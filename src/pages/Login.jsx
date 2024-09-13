@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Login.css'; // Importando o CSS da página de login
+import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -12,33 +12,50 @@ const Login = () => {
   useEffect(() => {
     const users = [
       { username: 'admin', password: '123456' },
-      { username: 'livia', password: 'password1' },
-      { username: 'Nicholas', password: 'password2' }
+      { username: 'user1', password: 'password1' },
+      { username: 'user2', password: 'password2' }
     ];
 
-     // Armazenar usuários simulados no localStorage apenas se não existirem
-     if (!localStorage.getItem('users')) {
-        localStorage.setItem('users', JSON.stringify(users));
-      }
-    }, []);
+    // Verifica se os usuários já estão no localStorage, senão, os insere
+    if (!localStorage.getItem('users')) {
+      localStorage.setItem('users', JSON.stringify(users));
+      console.log('Usuários simulados inseridos no localStorage.');
+    } else {
+      console.log('Usuários já estão no localStorage.');
+    }
+  }, []);
 
-    // Função para realizar o login
-    const handleLogin = (e) => {
-      e.preventDefault();
-      const users = JSON.parse(localStorage.getItem('users')) || [];
-  
-      // Verifica se o usuário e senha existem na lista de usuários simulados
-      const user = users.find(user => user.username === username && user.password === password);
-  
-      if (user) {
-        // Login bem-sucedido
-        navigate('/dashboard');  // Redireciona para o dashboard em caso de sucesso
-      } else {
-        // Exibe mensagem de erro se as credenciais forem inválidas
-        setError('Usuário ou senha incorretos');
-      }
-    };
+  // Função para realizar o login
+  const handleLogin = (e) => {
+    e.preventDefault();
+    
+    // Verificar se o localStorage contém os usuários
+    const storedUsers = localStorage.getItem('users');
+    if (!storedUsers) {
+      setError('Não há usuários no localStorage. Tente novamente.');
+      console.log('Erro: Usuários não estão no localStorage');
+      return;
+    }
 
+    const users = JSON.parse(storedUsers) || [];
+    console.log("Tentando login com:", username, password);
+    console.log("Usuários no localStorage:", users);
+
+    // Verifica se o usuário e senha existem na lista de usuários simulados
+    const user = users.find(user => user.username === username && user.password === password);
+
+    if (user) {
+      // Login bem-sucedido, armazena no localStorage e redireciona
+      console.log("Usuário encontrado:", user);
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('currentUser', JSON.stringify({ username }));
+      navigate('/dashboard');  // Redireciona para o dashboard em caso de sucesso
+    } else {
+      // Exibe mensagem de erro se as credenciais forem inválidas
+      setError('Usuário ou senha incorretos');
+      console.log("Usuário ou senha incorretos.");
+    }
+  };
   return (
     <div id="main-wrapper" className="container">
       <div className="row justify-content-center align-items-center vh-100">
@@ -57,6 +74,7 @@ const Login = () => {
                     </h3>
                     <p className="text-muted mt-2 mb-5">Digite seus dados de acesso</p>
 
+                    {/* Formulário de Login */}
                     <form onSubmit={handleLogin}>
                       <div className="form-group">
                         <label htmlFor="username">Usuário</label>
@@ -80,7 +98,13 @@ const Login = () => {
                           required
                         />
                       </div>
+
+                      {/* Exibição de erro, caso ocorra */}
+                      {error && <p className="text-danger">{error}</p>}
+
+                      {/* Botão de Login */}
                       <button type="submit" className="btn btn-success">Log in</button>
+
                       <a href="#!" className="forgot-link float-right text-primary">Esqueceu a senha?</a>
                     </form>
                   </div>
