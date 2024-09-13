@@ -22,10 +22,22 @@ const Login = () => {
       }
     }, []);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    alert(`Usuário: ${username}, Senha: ${password}`);
-  };
+    // Função para realizar o login
+    const handleLogin = (e) => {
+      e.preventDefault();
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+  
+      // Verifica se o usuário e senha existem na lista de usuários simulados
+      const user = users.find(user => user.username === username && user.password === password);
+  
+      if (user) {
+        // Login bem-sucedido
+        navigate('/dashboard');  // Redireciona para o dashboard em caso de sucesso
+      } else {
+        // Exibe mensagem de erro se as credenciais forem inválidas
+        setError('Usuário ou senha incorretos');
+      }
+    };
 
   return (
     <div id="main-wrapper" className="container">
