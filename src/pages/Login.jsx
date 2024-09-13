@@ -5,6 +5,22 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  // Função para inicializar usuários simulados no localStorage
+  useEffect(() => {
+    const users = [
+      { username: 'admin', password: '123456' },
+      { username: 'livia', password: 'password1' },
+      { username: 'Nicholas', password: 'password2' }
+    ];
+
+     // Armazenar usuários simulados no localStorage apenas se não existirem
+     if (!localStorage.getItem('users')) {
+        localStorage.setItem('users', JSON.stringify(users));
+      }
+    }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
