@@ -56,7 +56,7 @@ const Login = () => {
   
       // Redirecionar de acordo com o tipo de usuário
       if (user.tipoUsuario === 'guia') {
-        navigate('/dashboard-guide');
+        navigate('/dashboard-guia');
       } else {
         navigate('/passeios');
       }
