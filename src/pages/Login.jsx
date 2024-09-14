@@ -42,8 +42,8 @@ const Login = () => {
     console.log("Usuários no localStorage:", users);
 
     // Verifica se o usuário e senha existem na lista de usuários simulados
-    const user = users.find(user => user.username === username && user.password === password);
-
+    const user = users.find(user => user.email === username && user.senha === password);
+    
     if (user) {
       // Login bem-sucedido, armazena no localStorage e redireciona
       console.log("Usuário encontrado:", user);
