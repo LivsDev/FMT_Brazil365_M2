@@ -3,8 +3,8 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -17,45 +17,55 @@ const Login = () => {
     ];
 
     // Verifica se os usuários já estão no localStorage, senão, os insere
-    if (localStorage.getItem('users')) {
-      localStorage.setItem('users', JSON.stringify(users));
-      console.log('Usuários simulados inseridos no localStorage.');
-    } else {
-      console.log('Usuários já estão no localStorage.');
-    }
-  }, []);
+  if (!localStorage.getItem('users')) {
+    localStorage.setItem('users', JSON.stringify(users));
+    console.log('Usuários simulados inseridos no localStorage.');
+  } else {
+    console.log('Usuários já estão no localStorage.');
+  }
+}, []);
 
   // Função para realizar o login
   const handleLogin = (e) => {
     e.preventDefault();
-    
+    setError(null);
+  
     // Verificar se o localStorage contém os usuários
     const storedUsers = localStorage.getItem('users');
-    if (storedUsers) {
-      setError('Não há usuários no localStorage. Tente novamente.');
+    if (!storedUsers) {
+      setError('Não há usuários no sistema. Tente novamente mais tarde.');
       console.log('Erro: Usuários não estão no localStorage');
       return;
     }
-
+  
     const users = JSON.parse(storedUsers) || [];
-    console.log("Tentando login com:", username, password);
-    console.log("Usuários no localStorage:", users);
-
+    console.log('Tentando login com:', email, senha);
+    console.log('Usuários no localStorage:', users);
+  
     // Verifica se o usuário e senha existem na lista de usuários simulados
-    const user = users.find(user => user.email === username && user.senha === password);
-    
+    const user = users.find(
+      (user) => user.email === email && user.senha === senha
+    );
+  
     if (user) {
       // Login bem-sucedido, armazena no localStorage e redireciona
-      console.log("Usuário encontrado:", user);
+      console.log('Usuário encontrado:', user);
       localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('currentUser', JSON.stringify({ username }));
-      navigate('/dashboard');  // Redireciona para o dashboard em caso de sucesso
+      localStorage.setItem('currentUser', JSON.stringify(user));
+  
+      // Redirecionar de acordo com o tipo de usuário
+      if (user.tipoUsuario === 'guia') {
+        navigate('/dashboard-guide');
+      } else {
+        navigate('/passeios');
+      }
     } else {
       // Exibe mensagem de erro se as credenciais forem inválidas
-      setError('Usuário ou senha incorretos');
-      console.log("Usuário ou senha incorretos.");
+      setError('E-mail ou senha incorretos.');
+      console.log('E-mail ou senha incorretos.');
     }
   };
+
   return (
     <div id="main-wrapper" className="container">
       <div className="row justify-content-center align-items-center vh-100">
@@ -66,7 +76,11 @@ const Login = () => {
                 <div className="col-lg-7">
                   <div className="p-5">
                     <div className="mb-5">
-                      <img src="/src/assets/Brazil365.png" alt="Brazil365 Logo" className="logo-image" />
+                      <img 
+                      src="/src/assets/Brazil365.png" 
+                      alt="Brazil365 Logo" 
+                      className="logo-image" 
+                      />
                     </div>
 
                     <h3 className="h4 font-weight-bold text-theme">
@@ -77,24 +91,25 @@ const Login = () => {
                     {/* Formulário de Login */}
                     <form onSubmit={handleLogin}>
                       <div className="form-group">
-                        <label htmlFor="username">Usuário</label>
+                        <label htmlFor="email">E-mail</label>
                         <input
-                          type="text"
+                          type="email"
                           className="form-control"
-                          id="username"
-                          value={username}
-                          onChange={(e) => setUsername(e.target.value)}
+                          id="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
                           required
                         />
                       </div>
+
                       <div className="form-group mb-5">
-                        <label htmlFor="password">Senha</label>
+                        <label htmlFor="senha">Senha</label>
                         <input
                           type="password"
                           className="form-control"
-                          id="password"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
+                          id="senha"
+                          value={senha}
+                          onChange={(e) => setSenha(e.target.value)}
                           required
                         />
                       </div>
@@ -103,9 +118,14 @@ const Login = () => {
                       {error && <p className="text-danger">{error}</p>}
 
                       {/* Botão de Login */}
-                      <button type="submit" className="btn btn-success">Log in</button>
+                      <button type="submit" className="btn btn-success">
+                        Log in
+                      </button>
 
-                      <a href="#!" className="forgot-link float-right text-primary">Esqueceu a senha?</a>
+                      <a 
+                      href="#!" className="forgot-link float-right text-primary">
+                      Esqueceu a senha?
+                      </a>
                     </form>
                   </div>
                 </div>
@@ -127,7 +147,9 @@ const Login = () => {
           {/* end card */}
           <p className="text-muted text-center mt-3 mb-0">
             Não tem uma conta?{' '}
-            <a href="#!" className="text-danger ml-1">Cadastre-se</a>
+            <a href="#!" className="text-danger ml-1">
+            Cadastre-se
+            </a>
           </p>
         </div>
       </div>
