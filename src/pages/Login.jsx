@@ -17,7 +17,7 @@ const Login = () => {
     ];
 
     // Verifica se os usuários já estão no localStorage, senão, os insere
-    if (!localStorage.getItem('users')) {
+    if (localStorage.getItem('users')) {
       localStorage.setItem('users', JSON.stringify(users));
       console.log('Usuários simulados inseridos no localStorage.');
     } else {
@@ -31,7 +31,7 @@ const Login = () => {
     
     // Verificar se o localStorage contém os usuários
     const storedUsers = localStorage.getItem('users');
-    if (!storedUsers) {
+    if (storedUsers) {
       setError('Não há usuários no localStorage. Tente novamente.');
       console.log('Erro: Usuários não estão no localStorage');
       return;
