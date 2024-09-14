@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/useAuth'; 
 import './ListagemPasseios.css';
+import { useNavigate } from 'react-router-dom'; 
 
 const ListagemPasseios = () => {
     const { usuarioLogado } = useAuth(); 
     const [passeios, setPasseios] = useState([]);
     const [mensagem, setMensagem] = useState(null);
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         // Carrega os passeios do localStorage ao montar o componente
