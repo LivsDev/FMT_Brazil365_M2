@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/useAuth';
 
 const CadastroPasseio = () => {
   const [nomePasseio, setNomePasseio] = useState('');
@@ -9,6 +10,7 @@ const CadastroPasseio = () => {
   const [data, setData] = useState('');
   const [erro, setErro] = useState(null);
   const navigate = useNavigate();
+  const { usuarioLogado } = useAuth(); // Obtém o usuário logado
 
   // Função para validar e cadastrar um novo passeio
   const handleCadastroPasseio = (e) => {
@@ -48,6 +50,7 @@ const CadastroPasseio = () => {
       descricao,
       preco,
       data,
+      guiaEmail: usuarioLogado.email, // Associa o passeio ao guia logado
     };
 
      // Adiciona o novo passeio à lista de passeios e salva no localStorage
