@@ -1,0 +1,43 @@
+#cadastro-wrapper {
+    background-color: #f6f9fc;
+    padding: 30px;
+  }
+  
+  .card {
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-control {
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+  
+  .text-danger {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .text-center {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .text-primary {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .text-primary:hover {
+    color: #0056b3;
+  }
+  
