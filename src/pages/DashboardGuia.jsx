@@ -1,48 +1,70 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/useAuth';
-import { getPasseiosByGuia } from '../services/passeioService'; // Importa a função para obter passeios do guia
 import Navbar from '../components/Navbar';
-import './DashboardGuia.css'; // Importa o CSS específico do DashboardGuia
+import './DashboardGuia.css'; 
 
 function DashboardGuia() {
   const { usuarioLogado, logout } = useAuth(); // Obtém o usuário logado e a função de logout do contexto de autenticação
   const [passeios, setPasseios] = useState([]); // Estado para armazenar os passeios do guia
 
   useEffect(() => {
-    // Executa quando o componente é montado ou quando o usuário logado é alterado
-    const passeiosDoGuia = getPasseiosByGuia(usuarioLogado.email); // Obtém os passeios cadastrados pelo guia logado
-    setPasseios(passeiosDoGuia); // Atualiza o estado com os passeios obtidos
-  }, [usuarioLogado]);
+    // Carrega os passeios do localStorage
+    const passeiosCadastrados = JSON.parse(localStorage.getItem('passeios')) || [];
 
-  return (
-    <div className="dashboard-container">
-      {/* Componente de navegação */}
-      <Navbar usuarioLogado={usuarioLogado} logout={logout} />
+  // Filtra os passeios do guia logado
+  const passeiosDoGuia = passeiosCadastrados.filter((passeio) => passeio.guiaEmail === usuarioLogado.email);
+  setPasseios(passeiosDoGuia); // Atualiza o estado com os passeios do guia
+}, [usuarioLogado]);
 
-      {/* Conteúdo principal do dashboard */}
-      <main className="dashboard-main">
-        <header className="dashboard-header">
-          <h1>Bem-vindo, {usuarioLogado.nomeCompleto}</h1>
-        </header>
+return (
+  <div className="dashboard-container">
+    {/* Componente de navegação */}
+    <Navbar usuarioLogado={usuarioLogado} logout={logout} />
 
-        {/* Card exibindo a quantidade de passeios cadastrados */}
-        <div className="dashboard-card">
-          <h2>Passeios Cadastrados</h2>
-          <p>{passeios.length}</p>
-        </div>
+    {/* Conteúdo principal do dashboard */}
+    <main className="dashboard-main">
+      <header className="dashboard-header">
+        <h1>Bem-vindo, {usuarioLogado.nomeCompleto}</h1>
+      </header>
 
-        {/* Ações disponíveis para o guia */}
-        <div className="dashboard-actions">
-          <a href="/passeio/novo" className="dashboard-button">
-            Cadastrar Novo Passeio
-          </a>
-          <a href="/passeios" className="dashboard-button">
-            Listar Passeios
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+      {/* Card exibindo a quantidade de passeios cadastrados */}
+      <div className="dashboard-card">
+        <h2>Passeios Cadastrados</h2>
+        <p>{passeios.length}</p>
+      </div>
+
+      {/* Lista de passeios */}
+      <div className="dashboard-list">
+        <h3>Seus Passeios</h3>
+        {passeios.length > 0 ? (
+          <ul className="list-group">
+            {passeios.map((passeio, index) => (
+              <li key={index} className="list-group-item">
+                <h4>{passeio.nomePasseio}</h4>
+                <p>Local: {passeio.local}</p>
+                <p>Preço: R$ {passeio.preco}</p>
+                <p>Data: {passeio.data}</p>
+                <p>Descrição: {passeio.descricao}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Nenhum passeio cadastrado.</p>
+        )}
+      </div>
+
+      {/* Ações disponíveis para o guia */}
+      <div className="dashboard-actions">
+        <a href="/passeio/novo" className="dashboard-button">
+          Cadastrar Novo Passeio
+        </a>
+        <a href="/passeios" className="dashboard-button">
+          Listar Passeios
+        </a>
+      </div>
+    </main>
+  </div>
+);
 }
 
 export default DashboardGuia;
