@@ -1,19 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './pages/Login'; // Importe o componente Login
-import Dashboard from './pages/Dashboard'; // Página de dashboard
-import CadastroUsuario from './pages/CadastroUsuario';
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from './routes/AppRoutes';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const App = () => {
+function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} /> {/* Rota para o Dashboard */}
-        <Route path="/cadastro" element={<CadastroUsuario />} />
-      </Routes>
-    </Router>
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
   );
-};
+}
 
 export default App;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -146,11 +147,11 @@ const Login = () => {
           </div>
           {/* end card */}
           <p className="text-muted text-center mt-3 mb-0">
-            Não tem uma conta?{' '}
-            <a href="#!" className="text-danger ml-1">
-            Cadastre-se
-            </a>
-          </p>
+           Não tem uma conta?{' '}
+           <Link to="/cadastro" className="text-danger ml-1">
+           Cadastre-se
+           </Link>
+           </p>
         </div>
       </div>
     </div>
