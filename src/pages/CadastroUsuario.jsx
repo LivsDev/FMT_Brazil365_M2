@@ -1,141 +1,177 @@
 import React, { useState } from 'react';
 import './CadastroUsuario.css'; // Arquivo CSS personalizado
 import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importação do Bootstrap
+import { Form, Button, Alert } from 'react-bootstrap';
+import { salvarUsuario } from '../services/userService';
 
 const CadastroUsuario = () => {
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [tipoUsuario, setTipoUsuario] = useState('turista'); // Valor padrão: 'turista'
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
+  const [formValues, setFormValues] = useState({
+    nomeCompleto: '',
+    email: '',
+    senha: '',
+    tipoUsuario: '',
+  });
+  const [errors, setErrors] = useState({});
+  const [generalError, setGeneralError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  
+ // Função para lidar com as mudanças nos campos do formulário
+ const handleChange = (e) => {
+  setFormValues({
+    ...formValues,
+    [e.target.name]: e.target.value,
+  });
 
-  // Função para salvar o usuário no localStorage
-  const handleCadastro = (e) => {
-    e.preventDefault(); // Evita o comportamento padrão de recarregar a página
-    setError(null); // Limpa os erros anteriores
-    setSuccessMessage(''); // Limpa a mensagem de sucesso anterior
+  // Limpar o erro do campo atual
+  setErrors({
+    ...errors,
+    [e.target.name]: '',
+  });
 
-    // Validação da senha
-    console.log('Validando a senha:', senha);
-    if (senha.length < 8 || !/[a-zA-Z]/.test(senha) || !/[0-9]/.test(senha)) {
-      setError('A senha deve ter no mínimo 8 caracteres e conter letras e números.');
-      return;
+      // Limpar erros gerais
+      setGeneralError('');
+      setSuccessMessage('');
+    };
+
+    // Função para validar o formulário
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Validar Nome Completo
+    if (!formValues.nomeCompleto.trim()) {
+      newErrors.nomeCompleto = 'O nome completo é obrigatório.';
     }
 
-    // Verifica se o email já existe no localStorage
-    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
-    const emailExists = storedUsers.some(user => user.email === email);
-
-    if (emailExists) {
-      setError('Este e-mail já está cadastrado. Use um e-mail diferente.');
-      return;
+    // Validar E-mail
+    if (!formValues.email) {
+      newErrors.email = 'O e-mail é obrigatório.';
+    } else {
+      // Regex para validar o formato do e-mail
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formValues.email)) {
+        newErrors.email = 'Formato de e-mail inválido.';
+      }
     }
 
-    // Cria o novo usuário com e-mail e senha
-    const newUser = { nome, email, password: senha, tipo: tipoUsuario };
-    const updatedUsers = [...storedUsers, newUser];
+    // Validar Senha
+    if (!formValues.senha) {
+      newErrors.senha = 'A senha é obrigatória.';
+    } else {
+      if (formValues.senha.length < 8) {
+        newErrors.senha = 'A senha deve ter no mínimo 8 caracteres.';
+      }
+      const hasLetters = /[a-zA-Z]/.test(formValues.senha);
+      const hasNumbers = /[0-9]/.test(formValues.senha);
+      if (!hasLetters || !hasNumbers) {
+        newErrors.senha = 'A senha deve conter letras e números.';
+      }
+    }
 
-    // Salva no localStorage
-    localStorage.setItem('users', JSON.stringify(updatedUsers));
-    console.log('Usuário cadastrado com sucesso:', newUser);
+    // Validar Tipo de Usuário
+    if (!formValues.tipoUsuario) {
+      newErrors.tipoUsuario = 'Selecione o tipo de usuário.';
+    }
 
-    // Exibe mensagem de sucesso
-    setSuccessMessage('Usuário cadastrado com sucesso! Agora faça login.');
-    
-    // Redireciona para a página de login após um tempo de exibição da mensagem de sucesso
-    setTimeout(() => {
-      navigate('/login');
-    }, 2000);
+    setErrors(newErrors);
+
+    // Retorna true se não houver erros
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Função para lidar com o envio do formulário
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setGeneralError('');
+    setSuccessMessage('');
+
+    if (validateForm()) {
+      try {
+        salvarUsuario(formValues);
+        setSuccessMessage('Usuário cadastrado com sucesso!');
+        // Redirecionar para a página de login após cadastro bem-sucedido
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
+      } catch (error) {
+        setGeneralError(error.message);
+      }
+    }
   };
 
   return (
-    <div id="cadastro-wrapper" className="container">
-      <div className="row justify-content-center align-items-center vh-100">
-        <div className="col-md-6">
-          <div className="card border-0">
-            <div className="card-body">
-              <h3 className="h4 font-weight-bold text-center mb-4">Cadastro de Usuário</h3>
+    <div className="container mt-5">
+      <h2>Cadastro de Usuário</h2>
+      {generalError && <Alert variant="danger">{generalError}</Alert>}
+      {successMessage && <Alert variant="success">{successMessage}</Alert>}
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="nomeCompleto">
+          <Form.Label>Nome Completo</Form.Label>
+          <Form.Control
+            type="text"
+            name="nomeCompleto"
+            value={formValues.nomeCompleto}
+            onChange={handleChange}
+            isInvalid={!!errors.nomeCompleto}
+          />
+          <Form.Control.Feedback type="invalid">
+            {errors.nomeCompleto}
+          </Form.Control.Feedback>
+        </Form.Group>
 
-              {/* Exibição de mensagem de sucesso */}
-              {successMessage && <p className="text-success text-center">{successMessage}</p>}
+        <Form.Group controlId="email" className="mt-3">
+          <Form.Label>E-mail</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            value={formValues.email}
+            onChange={handleChange}
+            isInvalid={!!errors.email}
+          />
+          <Form.Control.Feedback type="invalid">
+            {errors.email}
+          </Form.Control.Feedback>
+        </Form.Group>
 
-              {/* Exibição de erro, caso ocorra */}
-              {error && <p className="text-danger">{error}</p>}
+        <Form.Group controlId="senha" className="mt-3">
+          <Form.Label>Senha</Form.Label>
+          <Form.Control
+            type="password"
+            name="senha"
+            value={formValues.senha}
+            onChange={handleChange}
+            isInvalid={!!errors.senha}
+          />
+          <Form.Control.Feedback type="invalid">
+            {errors.senha}
+          </Form.Control.Feedback>
+        </Form.Group>
 
-              {/* Formulário de Cadastro */}
-              <form onSubmit={handleCadastro}>
-                {/* Nome Completo */}
-                <div className="form-group mb-3">
-                  <label htmlFor="nome">Nome Completo</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="nome"
-                    value={nome}
-                    onChange={(e) => setNome(e.target.value)}
-                    required
-                  />
-                </div>
+        <Form.Group controlId="tipoUsuario" className="mt-3">
+          <Form.Label>Tipo de Usuário</Form.Label>
+          <Form.Select
+            name="tipoUsuario"
+            value={formValues.tipoUsuario}
+            onChange={handleChange}
+            isInvalid={!!errors.tipoUsuario}
+          >
+            <option value="">Selecione</option>
+            <option value="guia">Guia Turístico</option>
+            <option value="turista">Turista</option>
+          </Form.Select>
+          <Form.Control.Feedback type="invalid">
+            {errors.tipoUsuario}
+          </Form.Control.Feedback>
+        </Form.Group>
 
-                {/* E-mail */}
-                <div className="form-group mb-3">
-                  <label htmlFor="email">E-mail</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-
-                {/* Senha */}
-                <div className="form-group mb-3">
-                  <label htmlFor="senha">Senha</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="senha"
-                    value={senha}
-                    onChange={(e) => setSenha(e.target.value)}
-                    required
-                  />
-                </div>
-
-                {/* Tipo de Usuário */}
-                <div className="form-group mb-4">
-                  <label htmlFor="tipoUsuario">Tipo de Usuário</label>
-                  <select
-                    className="form-control"
-                    id="tipoUsuario"
-                    value={tipoUsuario}
-                    onChange={(e) => setTipoUsuario(e.target.value)}
-                  >
-                    <option value="turista">Turista</option>
-                    <option value="guia">Guia Turístico</option>
-                  </select>
-                </div>
-
-                {/* Botão de Cadastro */}
-                <button type="submit" className="btn btn-success btn-block">Cadastrar</button>
-              </form>
-
-              <p className="text-center mt-3">
-                Já tem uma conta?{' '}
-                <a href="/login" className="text-primary">Faça login aqui</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+        <Button variant="primary" type="submit" className="mt-4">
+          Cadastrar
+        </Button>
+      </Form>
     </div>
   );
 };
 
 export default CadastroUsuario;
-
-
+ 
+  
