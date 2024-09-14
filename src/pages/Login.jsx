@@ -11,9 +11,9 @@ const Login = () => {
   // Função para inicializar usuários simulados no localStorage
   useEffect(() => {
     const users = [
-      { username: 'admin', password: '123456' },
-      { username: 'user1', password: 'password1' },
-      { username: 'user2', password: 'password2' }
+      { email: 'admin@example.com', senha: 'Admin1234', tipoUsuario: 'guia' },
+      { email: 'user1@example.com', senha: 'Password1', tipoUsuario: 'turista' },
+      { email: 'user2@example.com', senha: 'Pass1234', tipoUsuario: 'turista' },
     ];
 
     // Verifica se os usuários já estão no localStorage, senão, os insere
