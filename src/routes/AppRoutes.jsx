@@ -4,6 +4,7 @@ import CadastroUsuario from '../pages/CadastroUsuario';
 import DashboardGuia from '../pages/DashboardGuia'; // Importa o DashboardGuia
 import PrivateRouteGuia from './PrivateRouteGuia'; // Importa a rota privada para guias
 import CadastroPasseio from '../pages/CadastroPasseio';
+import ListagemPasseios from '../pages/ListagemPasseios';
 
 function AppRoutes() {
     return (
@@ -11,6 +12,8 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<CadastroUsuario />} />
         <Route path="/passeio/novo" element={<CadastroPasseio />} />
+        <Route path="/passeios" element={<ListagemPasseios />} />
+        
         {/* Rota protegida para o Dashboard do Guia */}
         <Route
         path="/dashboard-guia"
