@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
-// Importa o contexto de autenticação
 import { useAuth } from '../contexts/useAuth';
+import PropTypes from 'prop-types'; 
 
-function PrivateRouteGuia({children}) {
+function PrivateRouteGuia({ children }) {
     const { usuarioLogado } = useAuth(); // Obtém o usuário logado
   
     if (!usuarioLogado) {
@@ -19,4 +19,8 @@ function PrivateRouteGuia({children}) {
     return children;
   }
   
+//validação de PropTypes para 'children'
+PrivateRouteGuia.propTypes = {
+  children: PropTypes.node.isRequired,
+};
   export default PrivateRouteGuia;
