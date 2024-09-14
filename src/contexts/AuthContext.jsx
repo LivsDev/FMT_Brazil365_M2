@@ -25,8 +25,4 @@ export function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
-// Hook personalizado para usar o contexto de autenticação
-export function useAuth() {
-    return useContext(AuthContext);
-  }
-  
+

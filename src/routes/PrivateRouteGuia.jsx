@@ -1,8 +1,9 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext'; // Importa o contexto de autenticação
+// Importa o contexto de autenticação
+import { useAuth } from '../contexts/useAuth';
 
-function PrivateRouteGuia({ children }) {
+function PrivateRouteGuia({children}) {
     const { usuarioLogado } = useAuth(); // Obtém o usuário logado
   
     if (!usuarioLogado) {
