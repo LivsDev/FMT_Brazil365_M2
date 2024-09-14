@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/useAuth';
 import { getPasseiosByGuia } from '../services/passeioService'; // Importa a função para obter passeios do guia
 import Navbar from '../components/Navbar';
 import './DashboardGuia.css'; // Importa o CSS específico do DashboardGuia
