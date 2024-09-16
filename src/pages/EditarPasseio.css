@@ -42,22 +42,35 @@
     border-radius: 4px;
   }
   
-  /* Botão de salvar */
-  button {
-    background-color: #28a745;
-    color: #fff;
+/* Botão de salvar específico da página de edição */
+.btn-salvar {
+    background-color: #28a745 !important; /* Força o background */
+    color: #fff !important; /* Força a cor do texto */
     padding: 10px;
     font-size: 1rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #218838;
-  }
-  
+    display: block; /* Garante que o botão seja exibido como bloco */
+    text-align: center; /* Centraliza o texto */
+    opacity: 1; /* Garante que o botão seja totalmente visível */
+    min-width: 100px; /* Define uma largura mínima */
+    min-height: 40px; /* Define uma altura mínima */
+}
+
+/* Estilo de hover específico para o botão de salvar */
+.btn-salvar:hover {
+    background-color: #218838 !important;
+}
+
+/* Botão de salvar desativado */
+.btn-salvar:disabled {
+    background-color: #28a745 !important;
+    color: #fff !important;
+    opacity: 0.7; /* Adiciona opacidade para indicar que está desativado */
+}
+
   /* Mensagem de sucesso */
   .text-success {
     color: #28a745;
