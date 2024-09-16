@@ -11,10 +11,13 @@ const DetalhePasseio = () => {
     const navigate = useNavigate(); 
 
     useEffect(() => {
-        // Carrega os passeios do localStorage
-        const passeiosCadastrados = JSON.parse(localStorage.getItem('passeios')) || [];
+    // Carrega os passeios do localStorage
+    const passeiosCadastrados = JSON.parse(localStorage.getItem('passeios')) || [];
 
-       // Atualiza o estado com os detalhes do passeio encontrado
+   // Encontra o passeio pelo nome (id)
+    const passeioEncontrado = passeiosCadastrados.find((p) => p.nomePasseio === id);
+
+  // Atualiza o estado com os detalhes do passeio encontrado
     if (passeioEncontrado) {
       setPasseio(passeioEncontrado);
     } else {
