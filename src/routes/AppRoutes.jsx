@@ -10,10 +10,20 @@ import DetalhePasseio from '../pages/DetalhePasseio';
 function AppRoutes() {
     return (
       <Routes>
+
+         {/* Rota para Login */}
         <Route path="/login" element={<Login />} />
+
+         {/* Rota para Cadastro de Usuário */}
         <Route path="/cadastro" element={<CadastroUsuario />} />
+
+        {/* Rota para Cadastro de Novo Passeio - */}
         <Route path="/passeio/novo" element={<CadastroPasseio />} />
+
+         {/* Rota para Listagem de Passeios */}
         <Route path="/passeios" element={<ListagemPasseios />} />
+
+        {/* Rota para Detalhe de Passeio */}
         <Route path="/passeio/:id" element={<DetalhePasseio />} />
         
         {/* Rota protegida para o Dashboard do Guia */}

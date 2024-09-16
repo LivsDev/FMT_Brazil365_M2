@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/useAuth';
 import Navbar from '../components/Navbar';
 import './DashboardGuia.css'; 
+import { Link } from 'react-router-dom';
 
 function DashboardGuia() {
   const { usuarioLogado, logout } = useAuth(); // Obtém o usuário logado e a função de logout do contexto de autenticação
@@ -18,6 +19,7 @@ function DashboardGuia() {
 
 return (
   <div className="dashboard-container">
+
     {/* Componente de navegação */}
     <Navbar usuarioLogado={usuarioLogado} logout={logout} />
 
@@ -35,23 +37,28 @@ return (
 
       {/* Lista de passeios */}
       <div className="dashboard-list">
-        <h3>Seus Passeios</h3>
-        {passeios.length > 0 ? (
-          <ul className="list-group">
-            {passeios.map((passeio, index) => (
-              <li key={index} className="list-group-item">
-                <h4>{passeio.nomePasseio}</h4>
-                <p>Local: {passeio.local}</p>
-                <p>Preço: R$ {passeio.preco}</p>
-                <p>Data: {passeio.data}</p>
-                <p>Descrição: {passeio.descricao}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Nenhum passeio cadastrado.</p>
-        )}
-      </div>
+          <h3>Seus Passeios</h3>
+          {passeios.length > 0 ? (
+            <ul className="list-group">
+              {passeios.map((passeio, index) => (
+                <li key={index} className="list-group-item">
+                  <h4>{passeio.nomePasseio}</h4>
+                  <p>Local: {passeio.local}</p>
+                  <p>Preço: R$ {passeio.preco}</p>
+                  <p>Data: {passeio.data}</p>
+                  <p>Descrição: {passeio.descricao}</p>
+
+                  {/* Adicionando link para a página de detalhes do passeio */}
+                  <Link to={`/passeio/${passeio.nomePasseio}`} className="btn btn-info mt-2">
+                    Ver Detalhes
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>Nenhum passeio cadastrado.</p>
+          )}
+        </div>
 
       {/* Ações disponíveis para o guia */}
       <div className="dashboard-actions">
