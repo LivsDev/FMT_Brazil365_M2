@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   // Função para inicializar usuários simulados no localStorage
-  useEffect(() => {
+    useEffect(() => {
     const users = [
       { email: 'admin@example.com', senha: 'Admin1234', tipoUsuario: 'guia' },
       { email: 'user1@example.com', senha: 'Password1', tipoUsuario: 'turista' },
@@ -18,18 +18,20 @@ const Login = () => {
     ];
 
     // Verifica se os usuários já estão no localStorage, senão, os insere
-  if (!localStorage.getItem('users')) {
+    if (!localStorage.getItem('users')) {
+
     localStorage.setItem('users', JSON.stringify(users));
     console.log('Usuários simulados inseridos no localStorage.');
   } else {
+    // Se os usuários já estão no localStorage, exibe-os no console
     console.log('Usuários já estão no localStorage.');
   }
 }, []);
 
   // Função para realizar o login
-  const handleLogin = (e) => {
+    const handleLogin = (e) => {
     e.preventDefault();
-    setError(null);
+    setError(null); // Reseta a mensagem de erro
   
     // Verificar se o localStorage contém os usuários
     const storedUsers = localStorage.getItem('users');

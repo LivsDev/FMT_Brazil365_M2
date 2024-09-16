@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/useAuth'; 
 import './ListagemPasseios.css';
-import { useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
+
 
 const ListagemPasseios = () => {
     const { usuarioLogado } = useAuth(); 
@@ -10,7 +11,7 @@ const ListagemPasseios = () => {
     const navigate = useNavigate(); 
 
     useEffect(() => {
-        // Carrega os passeios do localStorage ao montar o componente
+        // Carrega os passeios do localStorage 
         const passeiosCadastrados = JSON.parse(localStorage.getItem('passeios')) || [];
         setPasseios(passeiosCadastrados);
       }, []);
@@ -54,7 +55,7 @@ const ListagemPasseios = () => {
         {passeios.length > 0 ? (
           passeios.map((passeio, index) => (
             <div key={index} className="list-group-item">
-              <h4>{passeio.nomePasseio}</h4>
+             <h4><Link to={`/passeio/${passeio.nomePasseio}`}>{passeio.nomePasseio}</Link></h4>
               <p>Local: {passeio.local}</p>
               <p>Descrição: {passeio.descricao}</p>
               <p>Preço: R$ {passeio.preco}</p>
