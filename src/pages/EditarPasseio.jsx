@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './EditarPasseio.css'; 
-import { useAuth } from '../contexts/useAuth';
 
 const EditarPasseio = () => {
     const { id } = useParams(); // Obtém o ID do passeio da URL

@@ -138,7 +138,8 @@ const Login = () => {
                     <div className="overlay rounded-right"></div>
                     <div className="account-testimonial">
                       <h4 className="text-white mb-4">We are more than just a company</h4>
-                      <p className="lead text-white">"Best investment I made for a long time. Can only recommend it for other users."</p>
+                      <p className="lead text-white">&quot;Best investment I made for a long time. Can only recommend it for other users.&quot;</p>
+
                       <p>- Admin User</p>
                     </div>
                   </div>
