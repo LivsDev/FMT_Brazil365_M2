@@ -26,6 +26,16 @@ const ListagemPasseios = () => {
      // Recupera as reservas do localStorage
      const reservas = JSON.parse(localStorage.getItem('reservas')) || [];
 
+     // Verifica se o passeio já foi reservado pelo usuário
+    const jaReservado = reservas.some(
+      (reserva) => reserva.passeioId === passeio.nomePasseio && reserva.turistaEmail === usuarioLogado.email
+    );
+
+    if (jaReservado) {
+      setMensagem('Você já reservou este passeio.');
+      return;
+    }
+
      // Adiciona a nova reserva
     const novaReserva = {
         passeioId: passeio.nomePasseio,

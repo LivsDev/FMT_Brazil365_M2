@@ -6,103 +6,90 @@ import './DetalhePasseio.css'; // Importar o CSS personalizado
 const DetalhePasseio = () => {
     const { id } = useParams(); // Obtém o ID do passeio da URL
     const { usuarioLogado } = useAuth(); // Obtém o usuário logado do contexto
-    const [passeio, setPasseio] = useState(null);
+    const [passeio, setPasseio] = useState(null); // Estado para armazenar os detalhes do passeio
     const [mensagem, setMensagem] = useState(null);
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         // Carrega os passeios do localStorage
         const passeiosCadastrados = JSON.parse(localStorage.getItem('passeios')) || [];
-        const passeioEncontrado = passeiosCadastrados.find((p) => p.nomePasseio === id);
-        setPasseio(passeioEncontrado);
-      }, [id]);
 
-      // Função para reservar o passeio
-  const handleReserva = () => {
-    if (usuarioLogado.tipoUsuario !== 'turista') {
-      setMensagem('Apenas turistas podem fazer reservas.');
-      return;
+       // Atualiza o estado com os detalhes do passeio encontrado
+    if (passeioEncontrado) {
+      setPasseio(passeioEncontrado);
+    } else {
+      setMensagem('Passeio não encontrado.');
     }
+  }, [id]);
 
-    const reservas = JSON.parse(localStorage.getItem('reservas')) || [];
-    const novaReserva = {
-      passeioId: passeio.nomePasseio,
-      turistaEmail: usuarioLogado.email,
-      data: passeio.data,
-      local: passeio.local,
-    };
-
-    reservas.push(novaReserva);
-    localStorage.setItem('reservas', JSON.stringify(reservas));
-    setMensagem('Reserva realizada com sucesso!');
+   // Função para editar o passeio (apenas para guias)
+   const handleEdit = () => {
+    navigate(`/passeio/editar/${passeio.nomePasseio}`);
   };
 
-  // Função para excluir o passeio
-  const handleExcluir = () => {
-    if (usuarioLogado.tipoUsuario !== 'guia') {
-      setMensagem('Apenas o guia pode excluir este passeio.');
-      return;
-    }
+ // Função para excluir o passeio (apenas para guias)
+ const handleDelete = () => {
+  const passeiosCadastrados = JSON.parse(localStorage.getItem('passeios')) || [];
+  const novosPasseios = passeiosCadastrados.filter((p) => p.nomePasseio !== passeio.nomePasseio);
 
-    const passeiosCadastrados = JSON.parse(localStorage.getItem('passeios')) || [];
-    const passeiosAtualizados = passeiosCadastrados.filter((p) => p.nomePasseio !== id);
-    localStorage.setItem('passeios', JSON.stringify(passeiosAtualizados));
-    setMensagem('Passeio excluído com sucesso!');
-    navigate('/dashboard-guia'); // Redireciona para o dashboard após exclusão
-  };
+  // Atualiza o localStorage com os passeios restantes
+  localStorage.setItem('passeios', JSON.stringify(novosPasseios));
+  setMensagem('Passeio excluído com sucesso.');
+  navigate('/dashboard-guia');
+};
 
-  // Função para redirecionar à página de edição 
-  const handleEditar = () => {
-    if (usuarioLogado.tipoUsuario !== 'guia') {
-      setMensagem('Apenas o guia pode editar este passeio.');
-      return;
-    }
-    navigate(`/passeio/editar/${id}`);
-  };
-
-  if (!passeio) {
-    return <p>Carregando passeio...</p>;
+// Função para reservar o passeio (apenas para turistas)
+const handleReserva = () => {
+  if (usuarioLogado.tipoUsuario !== 'turista') {
+    setMensagem('Apenas turistas podem realizar reservas.');
+    return;
   }
 
-  return (
-    <div className="container mt-5">
-      <h2>Detalhes do Passeio</h2>
-      <div className="detalhe-passeio">
-        <h4>{passeio.nomePasseio}</h4>
-        <p><strong>Local:</strong> {passeio.local}</p>
-        <p><strong>Descrição:</strong> {passeio.descricao}</p>
-        <p><strong>Preço:</strong> R$ {passeio.preco}</p>
-        <p><strong>Data:</strong> {passeio.data}</p>
+  // Recupera as reservas do localStorage
+  const reservas = JSON.parse(localStorage.getItem('reservas')) || [];
+
+  // Adiciona a nova reserva
+  const novaReserva = {
+    passeioId: passeio.nomePasseio,
+    turistaEmail: usuarioLogado.email,
+    data: passeio.data,
+    local: passeio.local,
+  };
+
+  reservas.push(novaReserva);
+  localStorage.setItem('reservas', JSON.stringify(reservas));
+  setMensagem('Reserva realizada com sucesso!');
+};
+
+if (!passeio) {
+  return <p>{mensagem || 'Carregando...'}</p>;
+}
+
+return (
+  <div className="detalhe-passeio-container">
+    <h2>{passeio.nomePasseio}</h2>
+    <p><strong>Local:</strong> {passeio.local}</p>
+    <p><strong>Descrição:</strong> {passeio.descricao}</p>
+    <p><strong>Preço:</strong> R$ {passeio.preco}</p>
+    <p><strong>Data:</strong> {passeio.data}</p>
+
+    {/* Exibe os botões de edição e exclusão apenas para o guia */}
+    {usuarioLogado.tipoUsuario === 'guia' && usuarioLogado.email === passeio.guiaEmail && (
+      <div>
+        <button className="btn btn-warning" onClick={handleEdit}>Editar Passeio</button>
+        <button className="btn btn-danger" onClick={handleDelete}>Excluir Passeio</button>
       </div>
+    )}
 
-      {/* Exibe mensagens */}
-      {mensagem && <p className="text-success">{mensagem}</p>}
+    {/* Botão para reserva, visível apenas para turistas */}
+    {usuarioLogado.tipoUsuario === 'turista' && (
+      <button className="btn btn-primary" onClick={handleReserva}>Reservar Passeio</button>
+    )}
 
-      {/* Botão de reserva para turistas */}
-      {usuarioLogado.tipoUsuario === 'turista' && (
-        <button className="btn btn-success mt-3" onClick={handleReserva}>
-          Reservar
-        </button>
-      )}
-
-      {/* Botões de edição e exclusão para guias */}
-      {usuarioLogado.tipoUsuario === 'guia' && (
-        <>
-          <button className="btn btn-warning mt-3 mr-2" onClick={handleEditar}>
-            Editar Passeio
-          </button>
-          <button className="btn btn-danger mt-3" onClick={handleExcluir}>
-            Excluir Passeio
-          </button>
-        </>
-      )}
-
-      {/* Botão para voltar à lista de passeios */}
-      <button className="btn btn-secondary mt-4" onClick={() => navigate('/passeios')}>
-        Voltar à Lista de Passeios
-      </button>
-    </div>
-  );
+    {/* Exibe mensagem, se houver */}
+    {mensagem && <p className="text-success">{mensagem}</p>}
+  </div>
+);
 };
 
 export default DetalhePasseio;
