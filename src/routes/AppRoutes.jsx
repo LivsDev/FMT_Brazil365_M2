@@ -6,6 +6,7 @@ import PrivateRouteGuia from './PrivateRouteGuia'; // Importa a rota privada par
 import CadastroPasseio from '../pages/CadastroPasseio';
 import ListagemPasseios from '../pages/ListagemPasseios';
 import DetalhePasseio from '../pages/DetalhePasseio';
+import EditarPasseio from '../pages/EditarPasseio'; 
 
 function AppRoutes() {
     return (
@@ -25,6 +26,8 @@ function AppRoutes() {
 
         {/* Rota para Detalhe de Passeio */}
         <Route path="/passeio/:id" element={<DetalhePasseio />} />
+
+        <Route path="/passeio/editar/:id" element={<EditarPasseio />} /> {/* Nova rota para edição */}
         
         {/* Rota protegida para o Dashboard do Guia */}
         <Route
