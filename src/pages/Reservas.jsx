@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/useAuth';
+import { useNavigate } from 'react-router-dom';
 import './Reservas.css';
 
 const Reservas = () => {
     const { usuarioLogado } = useAuth(); // Obtém o usuário logado do contexto
     const [reservas, setReservas] = useState([]);
     const [mensagem, setMensagem] = useState(null);
+    const navigate = useNavigate(); // Inicializa o useNavigate
 
     useEffect(() => {
         // Verifica se o usuário é um turista
@@ -40,6 +42,10 @@ const Reservas = () => {
         setMensagem('Reserva cancelada com sucesso.');
     };
 
+        const handleBackToPasseios = () => {
+        navigate('/passeios'); // Redireciona para a listagem de passeios
+    };
+
     if (mensagem) {
         return <p>{mensagem}</p>;
     }
@@ -47,6 +53,10 @@ const Reservas = () => {
     return (
         <div className="reservas-container">
             <h2>Minhas Reservas</h2>
+
+            {/* Exibe a mensagem, se houver */}
+            {mensagem && <p className="text-success">{mensagem}</p>}
+            
             {reservas.length > 0 ? (
                 <ul className="reservas-list">
                     {reservas.map((reserva, index) => (
@@ -54,7 +64,7 @@ const Reservas = () => {
                             <h4>{reserva.passeioId}</h4>
                             <p><strong>Local:</strong> {reserva.local}</p>
                             <p><strong>Data:</strong> {reserva.data}</p>
-                            <p><strong>Status:</strong> {reserva.status}</p>
+                            <p><strong>Status:</strong> {reserva.status || 'ativa'}</p>
                             {reserva.status !== 'cancelada' && (
                                 <button className="btn btn-danger" onClick={() => handleCancelReserva(reserva.passeioId)}>
                                     Cancelar Reserva
@@ -66,6 +76,11 @@ const Reservas = () => {
             ) : (
                 <p>Você não possui reservas.</p>
             )}
+
+            {/* Botão Voltar */}
+            <button className="btn btn-secondary" onClick={handleBackToPasseios}>
+                Voltar para a Listagem de Passeios
+            </button>
         </div>
     );
 };

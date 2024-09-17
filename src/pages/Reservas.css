@@ -48,3 +48,23 @@
 .btn-danger:hover {
     background-color: #c82333;
 }
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.text-success {
+    color: #28a745;
+    font-weight: bold;
+    margin: 15px 0;
+}
