@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/useAuth'; 
+import { useNavigate } from 'react-router-dom'; 
 import './ListagemPasseios.css';
-import { Link, useNavigate } from 'react-router-dom'; 
 
 
 const ListagemPasseios = () => {
-    const { usuarioLogado } = useAuth(); 
+    const { usuarioLogado, signOut } = useAuth();
     const [passeios, setPasseios] = useState([]);
     const [mensagem, setMensagem] = useState(null);
     const navigate = useNavigate(); 
@@ -17,7 +17,7 @@ const ListagemPasseios = () => {
       }, []);
 
       // Função para reservar um passeio
-  const handleReserva = (passeio) => {
+    const handleReserva = (passeio) => {
     if (usuarioLogado.tipoUsuario !== 'turista') {
       setMensagem('Apenas turistas podem realizar reservas.');
       return;
@@ -54,36 +54,39 @@ const ListagemPasseios = () => {
       navigate('/reservas');
   };
 
-  // Função para logout
-      const handleLogout = () => {
-      signOut();
-      navigate('/login');
-  };
+   // Função para logout
+   const handleLogout = () => {
+    signOut(); 
+    navigate('/login');
+};
 
-  return (
-    <div className="listagem-passeios-container">
-        <header className="dashboard-header">
-            <h2>Bem-vindo, {usuarioLogado.nomeCompleto}</h2>
-            <div className="dashboard-actions">
-                <button className="btn btn-info" onClick={handleMinhasReservas}>Minhas Reservas</button>
-                <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
-            </div>
-        </header>
+return (
+  <div className="listagem-passeios-container">
+      <header className="dashboard-header">
+          <h2>Bem-vindo, {usuarioLogado.nomeCompleto}</h2>
+          <div className="dashboard-actions">
+              <button className="btn btn-info" onClick={handleMinhasReservas}>Minhas Reservas</button>
+              <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+          </div>
+      </header>
 
-        <h3 className="passeios-title">Listagem de Passeios</h3>
-        <ul className="passeios-list">
-            {passeios.map((passeio, index) => (
-                <li key={index} className="passeios-item">
-                    <h4>{passeio.nomePasseio}</h4>
-                    <p><strong>Local:</strong> {passeio.local}</p>
-                    <p><strong>Descrição:</strong> {passeio.descricao}</p>
-                    <p><strong>Preço:</strong> R$ {passeio.preco}</p>
-                    <p><strong>Data:</strong> {passeio.data}</p>
-                    <button className="btn btn-primary" onClick={() => handleReserva(passeio.nomePasseio)}>Reservar</button>
-                </li>
-            ))}
-        </ul>
-    </div>
+        {/* Exibir a mensagem se existir */}
+        {mensagem && <p className="text-message">{mensagem}</p>}
+
+      <h3 className="passeios-title">Listagem de Passeios</h3>
+      <ul className="passeios-list">
+          {passeios.map((passeio, index) => (
+              <li key={index} className="passeios-item">
+                  <h4>{passeio.nomePasseio}</h4>
+                  <p><strong>Local:</strong> {passeio.local}</p>
+                  <p><strong>Descrição:</strong> {passeio.descricao}</p>
+                  <p><strong>Preço:</strong> R$ {passeio.preco}</p>
+                  <p><strong>Data:</strong> {passeio.data}</p>
+                  <button className="btn btn-primary" onClick={() => handleReserva(passeio.nomePasseio)}>Reservar</button>
+              </li>
+          ))}
+      </ul>
+  </div>
 );
 };
 

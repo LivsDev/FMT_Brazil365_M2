@@ -93,3 +93,9 @@
 .btn-danger:hover {
     background-color: #c82333;
 }
+
+.text-message {
+    color: green; /* Escolha a cor que preferir */
+    font-weight: bold;
+    margin: 10px 0;
+}
