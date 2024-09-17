@@ -68,6 +68,15 @@ if (!passeio) {
   return <p>{mensagem || 'Carregando...'}</p>;
 }
 
+// Função para voltar à página anterior
+const handleBack = () => {
+  navigate(-1);
+};
+
+if (!passeio) {
+  return <p>{mensagem || 'Carregando...'}</p>;
+}
+
 return (
   <div className="detalhe-passeio-container">
     <h2>{passeio.nomePasseio}</h2>
@@ -88,6 +97,9 @@ return (
     {usuarioLogado.tipoUsuario === 'turista' && (
       <button className="btn btn-primary" onClick={handleReserva}>Reservar Passeio</button>
     )}
+
+     {/* Botão "Voltar" */}
+     <button className="btn btn-success btn-voltar" onClick={handleBack}>Voltar</button>
 
     {/* Exibe mensagem, se houver */}
     {mensagem && <p className="text-success">{mensagem}</p>}
