@@ -49,48 +49,42 @@ const ListagemPasseios = () => {
       setMensagem('Reserva realizada com sucesso!');
     };
 
-      // Função para redirecionar ao dashboard
-      const handleVoltar = () => {
-      navigate('/dashboard-guia');
+      // Função para redirecionar para as reservas
+      const handleMinhasReservas = () => {
+      navigate('/reservas');
+  };
+
+  // Função para logout
+      const handleLogout = () => {
+      signOut();
+      navigate('/login');
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Listagem de Passeios</h2>
-
-      {/* Exibe mensagens */}
-      {mensagem && <p className="text-success">{mensagem}</p>}
-
-      <div className="list-group">
-        {passeios.length > 0 ? (
-          passeios.map((passeio, index) => (
-            <div key={index} className="list-group-item">
-             <h4><Link to={`/passeio/${passeio.nomePasseio}`}>{passeio.nomePasseio}</Link></h4>
-              <p>Local: {passeio.local}</p>
-              <p>Descrição: {passeio.descricao}</p>
-              <p>Preço: R$ {passeio.preco}</p>
-              <p>Data: {passeio.data}</p>
-              {usuarioLogado.tipoUsuario === 'turista' && (
-                <button
-                  className="btn btn-primary mt-2"
-                  onClick={() => handleReserva(passeio)}
-                >
-                  Reservar
-                </button>
-              )}
+    <div className="listagem-passeios-container">
+        <header className="dashboard-header">
+            <h2>Bem-vindo, {usuarioLogado.nomeCompleto}</h2>
+            <div className="dashboard-actions">
+                <button className="btn btn-info" onClick={handleMinhasReservas}>Minhas Reservas</button>
+                <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
             </div>
-          ))
-        ) : (
-          <p>Nenhum passeio disponível no momento.</p>
-        )}
-      </div>
+        </header>
 
-      {/* Botão Voltar */}
-      <button className="btn btn-secondary mt-4" onClick={handleVoltar}>
-        Voltar ao Dashboard
-      </button>
+        <h3 className="passeios-title">Listagem de Passeios</h3>
+        <ul className="passeios-list">
+            {passeios.map((passeio, index) => (
+                <li key={index} className="passeios-item">
+                    <h4>{passeio.nomePasseio}</h4>
+                    <p><strong>Local:</strong> {passeio.local}</p>
+                    <p><strong>Descrição:</strong> {passeio.descricao}</p>
+                    <p><strong>Preço:</strong> R$ {passeio.preco}</p>
+                    <p><strong>Data:</strong> {passeio.data}</p>
+                    <button className="btn btn-primary" onClick={() => handleReserva(passeio.nomePasseio)}>Reservar</button>
+                </li>
+            ))}
+        </ul>
     </div>
-  );
+);
 };
 
 export default ListagemPasseios;
