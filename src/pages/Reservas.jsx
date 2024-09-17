@@ -65,6 +65,9 @@ const Reservas = () => {
                             <p><strong>Local:</strong> {reserva.local}</p>
                             <p><strong>Data:</strong> {reserva.data}</p>
                             <p><strong>Status:</strong> {reserva.status || 'ativa'}</p>
+
+                            
+                            
                             {reserva.status !== 'cancelada' && (
                                 <button className="btn btn-danger" onClick={() => handleCancelReserva(reserva.passeioId)}>
                                     Cancelar Reserva
