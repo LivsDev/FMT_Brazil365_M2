@@ -18,7 +18,14 @@ const Reservas = () => {
         const reservasCadastradas = JSON.parse(localStorage.getItem('reservas')) || [];
         // Filtra as reservas do turista logado
         const reservasDoTurista = reservasCadastradas.filter((reserva) => reserva.turistaEmail === usuarioLogado.email);
-        setReservas(reservasDoTurista);
+        
+        // Adiciona status 'ativa' a reservas que não possuem status definido
+        const reservasAtualizadas = reservasDoTurista.map((reserva) => ({
+            ...reserva,
+            status: reserva.status || 'ativa',
+        }));
+
+        setReservas(reservasAtualizadas);
     }, [usuarioLogado]);
 
     // Função para cancelar a reserva
@@ -47,7 +54,7 @@ const Reservas = () => {
                             <h4>{reserva.passeioId}</h4>
                             <p><strong>Local:</strong> {reserva.local}</p>
                             <p><strong>Data:</strong> {reserva.data}</p>
-                            <p><strong>Status:</strong> {reserva.status || 'ativa'}</p>
+                            <p><strong>Status:</strong> {reserva.status}</p>
                             {reserva.status !== 'cancelada' && (
                                 <button className="btn btn-danger" onClick={() => handleCancelReserva(reserva.passeioId)}>
                                     Cancelar Reserva
