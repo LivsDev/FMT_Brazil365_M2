@@ -7,6 +7,7 @@ import CadastroPasseio from '../pages/CadastroPasseio';
 import ListagemPasseios from '../pages/ListagemPasseios';
 import DetalhePasseio from '../pages/DetalhePasseio';
 import Reservas from '../pages/Reservas'
+import AvaliacaoPasseio from './pages/AvaliacaoPasseio';
 
 function AppRoutes() {
     return (
@@ -28,6 +29,8 @@ function AppRoutes() {
         <Route path="/passeio/:id" element={<DetalhePasseio />} />
 
         <Route path="/reservas" element={<Reservas />} />
+
+        <Route path="/avaliacoes/:id" element={<AvaliacaoPasseio />} />
         
         {/* Rota protegida para o Dashboard do Guia */}
         <Route
