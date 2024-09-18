@@ -6,9 +6,10 @@ body {
   
   .account-block {
     padding: 0;
-    background-image: url(${backgroundImage}); 
+    background-image: url('/src/assets/backgroundlogin.jpg'); /* Caminho da imagem de fundo */
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center; /* Centraliza a imagem */
     height: 100%;
     position: relative;
   }
@@ -46,5 +47,32 @@ body {
     background-color: #5369f8;
     border-color: #5369f8;
     color: #fff;
-  }
-  
+}
+
+.btn-login {
+  width: 100%; /* Deixa o botão mais comprido */
+  padding: 10px; /* Aumenta a altura do botão */
+  font-size: 16px; /* Ajusta o tamanho da fonte do botão */
+  background: linear-gradient(90deg, #28a745, #007bff); /* Degradê do verde para o azul */
+  border: none; /* Remove a borda */
+  color: #fff; /* Cor do texto */
+  border-radius: 5px; /* Borda arredondada */
+  transition: background 0.3s ease; /* Animação suave ao passar o mouse */
+}
+
+.btn-login:hover {
+  background: linear-gradient(90deg, #218838, #0056b3); /* Cores um pouco mais escuras ao passar o mouse */
+}
+
+.forgot-link {
+  display: block; /* Exibe o link como um bloco */
+  text-align: center;
+  margin-top: 10px; /* Adiciona espaço acima do texto */
+  font-weight: normal !important; /* Remove o negrito com prioridade */
+  color: #007bff; /* Cor do texto */
+  text-decoration: none; /* Remove o sublinhado */
+}
+
+.forgot-link:hover {
+  text-decoration: underline; /* Adiciona sublinhado no hover */
+}

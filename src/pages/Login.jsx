@@ -133,10 +133,10 @@ const Login = () => {
                       {error && <p className="text-danger">{error}</p>}
 
                       {/* Botão de Login */}
-                      <button type="submit" className="btn btn-success">
-                        Log in
+                      <button type="submit" className="btn btn-success btn-login">
+                       Log in 
                       </button>
-
+                        {/* Link "Esqueceu a senha?" abaixo do botão */}
                       <a 
                         href="#!" className="forgot-link float-right text-primary">
                         Esqueceu a senha?
