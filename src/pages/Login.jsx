@@ -12,9 +12,9 @@ const Login = () => {
   // Função para inicializar usuários simulados no localStorage
     useEffect(() => {
     const users = [
-      { email: 'admin@example.com', senha: 'Admin1234', tipoUsuario: 'guia' },
-      { email: 'user1@example.com', senha: 'Password1', tipoUsuario: 'turista' },
-      { email: 'user2@example.com', senha: 'Pass1234', tipoUsuario: 'turista' },
+      { email: 'admin@example.com', senha: 'Admin1234', tipoUsuario: 'guia', nomeCompleto: 'Admin User' },
+      { email: 'user1@example.com', senha: 'Password1', tipoUsuario: 'turista', nomeCompleto: 'User One' },
+      { email: 'user2@example.com', senha: 'Pass1234', tipoUsuario: 'turista', nomeCompleto: 'User Two' },
     ];
 
     // Verifica se os usuários já estão no localStorage, senão, os insere
@@ -41,21 +41,26 @@ const Login = () => {
       return;
     }
   
-    const users = JSON.parse(storedUsers) || [];
+    let users = JSON.parse(storedUsers) || [];
     console.log('Tentando login com:', email, senha);
     console.log('Usuários no localStorage:', users);
   
     // Verifica se o usuário e senha existem na lista de usuários simulados
-    const user = users.find(
+    let user = users.find(
       (user) => user.email === email && user.senha === senha
     );
-  
+
     if (user) {
+      // Adiciona nomeCompleto se não estiver presente
+      if (!user.nomeCompleto) {
+        user.nomeCompleto = 'Usuário Simulado';
+      }
+
       // Login bem-sucedido, armazena no localStorage e redireciona
       console.log('Usuário encontrado:', user);
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('currentUser', JSON.stringify(user));
-  
+
       // Redirecionar de acordo com o tipo de usuário
       if (user.tipoUsuario === 'guia') {
         navigate('/dashboard-guia');
@@ -63,9 +68,16 @@ const Login = () => {
         navigate('/passeios');
       }
     } else {
-      // Exibe mensagem de erro se as credenciais forem inválidas
-      setError('E-mail ou senha incorretos.');
-      console.log('E-mail ou senha incorretos.');
+      // Se o usuário não foi encontrado, adicionar novo usuário
+      console.log('Usuário não encontrado. Adicionando novo usuário.');
+      const novoUsuario = { email, senha, tipoUsuario: 'turista', nomeCompleto: 'Novo Usuário' };
+      users.push(novoUsuario);
+      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('currentUser', JSON.stringify(novoUsuario));
+
+      // Redirecionar o novo usuário turista para a listagem de passeios
+      navigate('/passeios');
     }
   };
 
@@ -80,9 +92,9 @@ const Login = () => {
                   <div className="p-5">
                     <div className="mb-5">
                       <img 
-                      src="/src/assets/Brazil365.png" 
-                      alt="Brazil365 Logo" 
-                      className="logo-image" 
+                        src="/src/assets/Brazil365.png" 
+                        alt="Brazil365 Logo" 
+                        className="logo-image" 
                       />
                     </div>
 
@@ -126,8 +138,8 @@ const Login = () => {
                       </button>
 
                       <a 
-                      href="#!" className="forgot-link float-right text-primary">
-                      Esqueceu a senha?
+                        href="#!" className="forgot-link float-right text-primary">
+                        Esqueceu a senha?
                       </a>
                     </form>
                   </div>
@@ -138,7 +150,7 @@ const Login = () => {
                     <div className="overlay rounded-right"></div>
                     <div className="account-testimonial">
                       <h4 className="text-white mb-4">We are more than just a company</h4>
-                     <p className="lead text-white">&quot;Descubra novos horizontes e faça da sua próxima aventura uma experiência inesquecível!&quot;</p>
+                      <p className="lead text-white">&quot;Descubra novos horizontes e faça da sua próxima aventura uma experiência inesquecível!&quot;</p>
                       <p>- Admin User</p>
                     </div>
                   </div>
@@ -149,11 +161,11 @@ const Login = () => {
           </div>
           {/* end card */}
           <p className="text-muted text-center mt-3 mb-0">
-           Não tem uma conta?{' '}
-           <Link to="/cadastro" className="text-danger ml-1">
-           Cadastre-se
-           </Link>
-           </p>
+            Não tem uma conta?{' '}
+            <Link to="/cadastro" className="text-danger ml-1">
+              Cadastre-se
+            </Link>
+          </p>
         </div>
       </div>
     </div>
