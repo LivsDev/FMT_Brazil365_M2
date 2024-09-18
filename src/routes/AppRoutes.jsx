@@ -7,7 +7,7 @@ import CadastroPasseio from '../pages/CadastroPasseio';
 import ListagemPasseios from '../pages/ListagemPasseios';
 import DetalhePasseio from '../pages/DetalhePasseio';
 import Reservas from '../pages/Reservas'
-import AvaliacaoPasseio from './pages/AvaliacaoPasseio';
+import AvaliacaoPasseio from '../pages/AvaliacaoPasseio';
 
 function AppRoutes() {
     return (

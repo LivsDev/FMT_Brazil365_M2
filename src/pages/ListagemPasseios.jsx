@@ -5,7 +5,7 @@ import './ListagemPasseios.css';
 
 
 const ListagemPasseios = () => {
-    const { usuarioLogado, signOut } = useAuth();
+    const { usuarioLogado, logout } = useAuth(); // Adiciona a função logout
     const [passeios, setPasseios] = useState([]);
     const [mensagem, setMensagem] = useState(null);
     const navigate = useNavigate(); 
@@ -15,6 +15,12 @@ const ListagemPasseios = () => {
         const passeiosCadastrados = JSON.parse(localStorage.getItem('passeios')) || [];
         setPasseios(passeiosCadastrados);
       }, []);
+
+       // Função para logout
+    const handleLogout = () => {
+      logout(); // Chama a função logout do contexto de autenticação
+      navigate('/login'); // Redireciona para a página de login
+  };
 
       // Função para reservar um passeio
     const handleReserva = (passeio) => {
@@ -54,13 +60,7 @@ const ListagemPasseios = () => {
       navigate('/reservas');
   };
 
-   // Função para logout
-   const handleLogout = () => {
-    signOut(); 
-    navigate('/login');
-};
-
-return (
+  return (
   <div className="listagem-passeios-container">
       <header className="dashboard-header">
           <h2>Bem-vindo, {usuarioLogado.nomeCompleto}</h2>

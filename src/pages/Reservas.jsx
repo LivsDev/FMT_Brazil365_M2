@@ -42,13 +42,15 @@ const Reservas = () => {
         setMensagem('Reserva cancelada com sucesso.');
     };
 
-        const handleBackToPasseios = () => {
+    const handleBackToPasseios = () => {
         navigate('/passeios'); // Redireciona para a listagem de passeios
     };
 
-    if (mensagem) {
-        return <p>{mensagem}</p>;
-    }
+    // Função para redirecionar para a avaliação do passeio
+    const handleAddAvaliacao = (passeioId) => {
+        navigate(`/avaliacoes/${passeioId}`);
+    };
+
 
     return (
         <div className="reservas-container">
@@ -72,20 +74,27 @@ const Reservas = () => {
                                 <button className="btn btn-danger" onClick={() => handleCancelReserva(reserva.passeioId)}>
                                     Cancelar Reserva
                                 </button>
-                            )}
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p>Você não possui reservas.</p>
-            )}
+ )}
 
-            {/* Botão Voltar */}
-            <button className="btn btn-secondary" onClick={handleBackToPasseios}>
-                Voltar para a Listagem de Passeios
-            </button>
-        </div>
-    );
+ {/* Botão para adicionar avaliação */}
+ {reserva.status !== 'cancelada' && (
+     <button className="btn btn-primary" onClick={() => handleAddAvaliacao(reserva.passeioId)}>
+         Adicionar Avaliação
+     </button>
+          )}
+         </li>
+           ))}
+         </ul>
+        ) : (
+         <p>Você não possui reservas.</p>
+        )}
+
+{/* Botão Voltar */}
+<button className="btn btn-secondary" onClick={handleBackToPasseios}>
+Voltar para a Listagem de Passeios
+</button>
+</div>
+);
 };
 
 export default Reservas;
