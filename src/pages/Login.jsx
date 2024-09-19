@@ -83,12 +83,13 @@ const Login = () => {
 
   return (
     <div id="main-wrapper" className="container">
-      <div className="row justify-content-center align-items-center vh-100">
+      <div className="row justify-content-center align-items-center">
         <div className="col-xl-10">
           <div className="card border-0">
             <div className="card-body p-0">
+
               <div className="row no-gutters">
-                <div className="col-lg-7">
+                <div className="col-lg-6">
                   <div className="p-5">
                     <div className="mb-5">
                       <img 
@@ -117,7 +118,7 @@ const Login = () => {
                         />
                       </div>
 
-                      <div className="form-group mb-5">
+                      <div className="form-group mb-4">
                         <label htmlFor="senha">Senha</label>
                         <input
                           type="password"
@@ -158,7 +159,7 @@ const Login = () => {
                   <div className="account-block rounded-right">
                     <div className="overlay rounded-right"></div>
                     <div className="account-testimonial">
-                      <h4 className="text-white mb-4">We are more than just a company</h4>
+                      <h4 className="text-white mb-4">&quot;Mais do que uma viagem, somos uma experiência.&quot;</h4>
                       <p className="lead text-white">&quot;Descubra novos horizontes e faça da sua próxima aventura uma experiência inesquecível!&quot;</p>
                       <p>- Admin User</p>
                     </div>
