@@ -136,11 +136,20 @@ const Login = () => {
                       <button type="submit" className="btn btn-success btn-login">
                        Log in 
                       </button>
+                      
                         {/* Link "Esqueceu a senha?" abaixo do botão */}
                       <a 
                         href="#!" className="forgot-link float-right text-primary">
                         Esqueceu a senha?
                       </a>
+
+                   {/* Frase de cadastro */}
+                      <p className="text-muted text-center mt-3 mb-0">
+                        Não tem uma conta?{' '}
+                        <Link to="/cadastro" className="text-danger ml-1">
+                          Cadastre-se
+                        </Link>
+                      </p>
                     </form>
                   </div>
                 </div>
@@ -160,12 +169,6 @@ const Login = () => {
             {/* end card-body */}
           </div>
           {/* end card */}
-          <p className="text-muted text-center mt-3 mb-0">
-            Não tem uma conta?{' '}
-            <Link to="/cadastro" className="text-danger ml-1">
-              Cadastre-se
-            </Link>
-          </p>
         </div>
       </div>
     </div>
