@@ -84,7 +84,7 @@ const Login = () => {
   return (
     <div id="main-wrapper" className="container">
       <div className="row justify-content-center align-items-center">
-        <div className="col-xl-10">
+        <div className="col-xl-14">
           <div className="card border-0">
             <div className="card-body p-0">
 
@@ -155,13 +155,13 @@ const Login = () => {
                   </div>
                 </div>
 
-                <div className="col-lg-5 d-none d-lg-inline-block">
+                <div className="col-lg-6 d-flex align-items-center ">
                   <div className="account-block rounded-right">
                     <div className="overlay rounded-right"></div>
                     <div className="account-testimonial">
                       <h4 className="text-white mb-4">&quot;Mais do que uma viagem, somos uma experiência.&quot;</h4>
                       <p className="lead text-white">&quot;Descubra novos horizontes e faça da sua próxima aventura uma experiência inesquecível!&quot;</p>
-                      <p>- Admin User</p>
+                      <p>- Equipe Brazil365</p>
                     </div>
                   </div>
                 </div>
