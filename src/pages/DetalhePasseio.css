@@ -1,89 +1,92 @@
-/* Estilo geral do container */
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+/* Container principal */
+.detalhe-passeio-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../assets/fundoidpasseio.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-/* Estilo para a seção de detalhes do passeio */
-.detalhe-passeio {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Caixa de conteúdo com os detalhes */
+.detalhe-passeio-content {
+  background-color: rgba(255, 255, 255, 0.95); /* Fundo branco semitransparente */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px; /* Ajuste de tamanho da div */
+  text-align: center;
+  z-index: 1;
 }
 
-.detalhe-passeio h4 {
-  font-size: 1.5rem;
+h2 {
+  font-size: 2rem;
   color: #333;
-  margin-bottom: 10px;
 }
 
-.detalhe-passeio p {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 5px;
+p {
+  font-size: 1.2rem;
+  color: #555;
 }
 
-/* Estilo para mensagens de sucesso/erro */
-.text-success {
-  color: #28a745;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-.text-danger {
-  color: #dc3545;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-/* Estilo específico para os botões na página de detalhes */
-.detalhe-passeio button {
-  margin-right: 10px;
-}
-
-.detalhe-passeio .btn {
-  padding: 10px 20px;
-  font-size: 1rem;
-}
-
-/* Estilo para o botão de editar */
-.detalhe-passeio .btn-warning {
-  background-color: #ffc107;
-  border-color: #ffc107;
-  color: #fff;
+/* Botões */
+.btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
   cursor: pointer;
+  margin-top: 15px;
+  font-size: 16px;
 }
 
-.detalhe-passeio .btn-warning:hover {
-  background-color: #e0a800;
-  border-color: #d39e00;
-}
-
-/* Estilo para o botão de excluir */
-.detalhe-passeio .btn-danger {
-  background-color: #dc3545;
-  border-color: #dc3545;
-  color: #fff;
-  cursor: pointer;
-}
-
-.detalhe-passeio .btn-danger:hover {
-  background-color: #c82333;
-  border-color: #bd2130;
-}
-
-/* Estilo para o botão de reserva */
-.detalhe-passeio .btn-primary {
+.btn-primary {
   background-color: #007bff;
-  border-color: #007bff;
-  color: #fff;
-  cursor: pointer;
+  color: white;
+  border: none;
 }
 
-.detalhe-passeio .btn-primary:hover {
-  background-color: #0069d9;
-  border-color: #0062cc;
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: black;
+  border: none;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  margin-top: 10px;
+}
+
+.btn-info:hover {
+  background-color: #117a8b;
+}
+
+/* Mensagem de sucesso */
+.text-success {
+  color: green;
+  font-weight: bold;
+  margin-top: 15px;
 }

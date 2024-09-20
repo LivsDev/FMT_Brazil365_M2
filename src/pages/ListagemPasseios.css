@@ -6,7 +6,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-image: url('../assets/fundolistagemdepasseios.jpg'); /* Caminho da imagem de fundo */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

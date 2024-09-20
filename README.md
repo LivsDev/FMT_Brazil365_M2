@@ -50,6 +50,9 @@ O usuários poderão de cadastrar como turista ou como guia.
 * Apenas o guia que cadastrou o passeio pode editá-lo ou excluí-lo.
 * Os turistas podem visualizar os detalhes e reservar o passeio.
 
+![Brazil365](./src/assets/Teladetalhepasseio.png)
+
+
 ### 7. Reservas (Turista) (/reservas):
 
 * Apenas turistas autenticados possuem acesso as suas reservas,e podem cancelar
@@ -57,6 +60,9 @@ diretamente por esta página.
 
 
 ### 8. Avaliações de Passeio (/avaliacoes/:id):
+
+
+### Estrutura do Projeto
 
 
 
