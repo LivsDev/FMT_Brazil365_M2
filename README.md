@@ -17,7 +17,7 @@ Permite que os usuários façam login com e-mail e senha.
 ### 2. Cadastro de Usuários: (/cadastro)
 O usuários poderão de cadastrar como turista ou como guia.
 
-![Brazil365](./src/assets/)
+![Brazil365](./src/assets/TelaCadastro.png)
 
 ### 3. Dashboard do Guia
 Quantidade de passeios cadastrados e atalhos para as páginas de cadastro e listagem de passeios.
