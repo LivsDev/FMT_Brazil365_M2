@@ -19,10 +19,18 @@ O usuários poderão de cadastrar como turista ou como guia.
 
 ![Brazil365](./src/assets/TelaCadastro.png)
 
-### 3. Dashboard do Guia
-Quantidade de passeios cadastrados e atalhos para as páginas de cadastro e listagem de passeios.
+### 3. Dashboard do Guia: (/dashboard-guia)
+* Quantidade de passeios cadastrados e atalhos para as páginas de cadastro e listagem de passeios.
+* Apenas usuários autenticados com perfil de guia podem acessar essa página.
 
 ![Brazil365](./src/assets/TelaDashGuia.png)
+
+### 4. Cadastro de Novo Passeio: (/passeio/novo)
+
+Cadastro de novos passeios feitos pelos guias.
+
+
+
 
 
 
