@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
 import './Login.css';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../contexts/useAuth'; 
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   // Função para inicializar usuários simulados no localStorage
     useEffect(() => {
     const users = [
       { email: 'admin@example.com', senha: 'Admin1234', tipoUsuario: 'guia', nomeCompleto: 'Admin User' },
-      { email: 'user1@example.com', senha: 'Password1', tipoUsuario: 'turista', nomeCompleto: 'User One' },
+      { email: 'livia@example.com', senha: 'Password1', tipoUsuario: 'turista', nomeCompleto: 'User One' },
       { email: 'user2@example.com', senha: 'Pass1234', tipoUsuario: 'turista', nomeCompleto: 'User Two' },
     ];
 

@@ -3,23 +3,26 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  max-width: 1200px; /* Limite máximo de largura */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  padding: 20px; /* Ajusta o padding */
   background-color: #f6f9fc; /* Cor de fundo clara */
 }
 
 /* Conteúdo principal do dashboard */
 .dashboard-main {
   flex: 1;
-  padding: 20px;
+  padding: 15px;
   background-color: #f5f5f5;
 }
 
 /* Cabeçalho do dashboard */
 .dashboard-header {
-  background-color: #f7dc6f; /* Amarelo suave */
+  background-color: #6fdcf7; /* Amarelo suave */
   color: white;
-  padding: 20px;
+  padding: 15px; /* Ajustei o padding */
   border-radius: 5px;
-  font-size: 14px; /* Reduzi o tamanho da fonte */
+  font-size: 10px; /* Reduzi o tamanho da fonte */
   font-weight: bold;
   text-align: center;
   display: flex;
@@ -44,12 +47,12 @@
 /* Card que exibe a quantidade de passeios */
 .dashboard-card {
   background-color: white;
-  padding: 20px;
-  margin-top: 20px;
+  padding: 15px; /* Reduzi o padding */
+  margin-top: 15px; /* Ajustei a margem superior */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
   text-align: center;
-  font-size: 18px;
+  font-size: 16px; /* Reduzi o tamanho da fonte */
   color: #333;
 }
 
@@ -75,13 +78,59 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
 }
 
-.dashboard-button:hover {
-  background: linear-gradient(90deg, #218838, #0056b3); /* Cores mais escuras ao passar o mouse */
+/* Lista de passeios em grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo */
+  gap: 20px; /* Espaço entre os itens */
+  margin-top: 20px;
+}
+
+/* Cada item de passeio na grid */
+.grid-item {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+/* Efeito ao passar o mouse */
+.grid-item:hover {
+  transform: scale(1.05);
+}
+
+/* Botão "Ver Detalhes" */
+.btn-info {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn-info:hover {
+  background-color: #0056b3;
 }
 
 /* Ajuste adicional para versão mobile */
 @media (max-width: 768px) {
   .dashboard-actions {
-      flex-direction: column;
+    flex-direction: column;
   }
+  
+  /* Mostra apenas uma coluna em dispositivos móveis */
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Navbar logo */
+.navbar-logo {
+  height: 40px;
+  width: auto;
 }

@@ -35,30 +35,27 @@ return (
         <p>{passeios.length}</p>
       </div>
 
-      {/* Lista de passeios */}
       <div className="dashboard-list">
-          <h3>Seus Passeios</h3>
-          {passeios.length > 0 ? (
-            <ul className="list-group">
-              {passeios.map((passeio, index) => (
-                <li key={index} className="list-group-item">
-                  <h4>{passeio.nomePasseio}</h4>
-                  <p>Local: {passeio.local}</p>
-                  <p>Preço: R$ {passeio.preco}</p>
-                  <p>Data: {passeio.data}</p>
-                  <p>Descrição: {passeio.descricao}</p>
-
-                  {/* Adicionando link para a página de detalhes do passeio */}
-                  <Link to={`/passeio/${passeio.nomePasseio}`} className="btn btn-info mt-2">
-                    Ver Detalhes
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>Nenhum passeio cadastrado.</p>
-          )}
+  <h3>Seus Passeios</h3>
+  {passeios.length > 0 ? (
+    <div className="grid-container">
+      {passeios.map((passeio, index) => (
+        <div key={index} className="grid-item">
+          <h4>{passeio.nomePasseio}</h4>
+          <p>Local: {passeio.local}</p>
+          <p>Preço: R$ {passeio.preco}</p>
+          <p>Data: {passeio.data}</p>
+          <p>Descrição: {passeio.descricao}</p>
+          <Link to={`/passeio/${passeio.nomePasseio}`} className="btn btn-info mt-2">
+            Ver Detalhes
+          </Link>
         </div>
+      ))}
+    </div>
+  ) : (
+    <p>Nenhum passeio cadastrado.</p>
+  )}
+</div>
 
       {/* Ações disponíveis para o guia */}
       <div className="dashboard-actions">
