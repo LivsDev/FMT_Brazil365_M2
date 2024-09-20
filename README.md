@@ -38,8 +38,25 @@ O usuários poderão de cadastrar como turista ou como guia.
 ![Brazil365](./src/assets/TelaCadastroPasseio.png)
 
 
-### 5 . Listagem de Passeios: (/passeios)
+### 5. Listagem de Passeios: (/passeios)
 
+* Apenas usuários autenticados podem ter acesso a lista de passeios.
+* Os turistas podem realizar a reserva de um passeio diretamente a partir desta página.
+
+![Brazil365](./src/assets/Telalistagemdepasseios.png)
+
+### 6. Detalhe de Passeio: (/passeio/:id)
+
+* Apenas o guia que cadastrou o passeio pode editá-lo ou excluí-lo.
+* Os turistas podem visualizar os detalhes e reservar o passeio.
+
+### 7. Reservas (Turista) (/reservas):
+
+* Apenas turistas autenticados possuem acesso as suas reservas,e podem cancelar
+diretamente por esta página.
+
+
+### 8. Avaliações de Passeio (/avaliacoes/:id):
 
 
 
@@ -48,9 +65,9 @@ O usuários poderão de cadastrar como turista ou como guia.
 
 Ao construir a aplicação coloquei em prática os aprendizados em:
 
-* Versionamento: Uso do GitHub para versionamento de código.
-* HTML: Tags e Elementos semânticos
-* CSS: Seletores, Principais estilos, Layouts e Flexbox
-* JavaScript: Variáveis, Tipos de dados, Operadores, Manipulação do DOM, Estrutura de Controle de Fluxo, Funções, Eventos, JSON, LocalStorage, Interval, Timeout, Operadores Rest e Spread, Módulos, Arrow Functions, Funções de Arrays, Funções Assíncronas e Fetch.
-* React: Renderização de componentes, Props, Proptypes, Hooks, Eventos, Renderização de listas, React Router, Formulários, Prop Drilling, Composition, Estilos Bootstrap, Developer Tools e Deploy.
-* Skills: Organização, criação de documentação e apresentação de solução.
+* **Versionamento:** Uso do GitHub para versionamento de código.
+* **HTML:** Tags e Elementos semânticos
+* **CSS:** Seletores, Principais estilos, Layouts e Flexbox
+* **JavaScript**: Variáveis, Tipos de dados, Operadores, Manipulação do DOM, Estrutura de Controle de Fluxo, Funções, Eventos, JSON, LocalStorage, Interval, Timeout, Operadores Rest e Spread, Módulos, Arrow Functions, Funções de Arrays, Funções Assíncronas e Fetch.
+* **React:** Renderização de componentes, Props, Proptypes, Hooks, Eventos, Renderização de listas, React Router, Formulários, Prop Drilling, Composition, Estilos Bootstrap, Developer Tools e Deploy.
+* **Skills:** Organização, criação de documentação e apresentação de solução.

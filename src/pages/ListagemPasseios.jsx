@@ -66,33 +66,33 @@ const ListagemPasseios = () => {
   };
 
   return (
-  <div className="listagem-passeios-container">
-      <header className="dashboard-header">
-          <h2>Bem-vindo, {usuarioLogado.nomeCompleto}</h2>
-          <div className="dashboard-actions">
-              <button className="btn btn-info" onClick={handleMinhasReservas}>Minhas Reservas</button>
-              <button className="btn btn-primary" onClick={handleDashboard}>Dashboard</button>
-              <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
-          </div>
-      </header>
+    <div className="listagem-passeios-container">
+    <header className="dashboard-header">
+        <h2>Bem-vindo, {usuarioLogado.nomeCompleto}</h2>
+        <div className="dashboard-actions">
+            <button className="btn btn-info" onClick={handleMinhasReservas}>Minhas Reservas</button>
+            <button className="btn btn-primary" onClick={handleDashboard}>Dashboard</button>
+            <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+        </div>
+    </header>
 
-        {/* Exibir a mensagem se existir */}
-        {mensagem && <p className="text-message">{mensagem}</p>}
+    {mensagem && <p className="text-message">{mensagem}</p>}
 
-      <h3 className="passeios-title">Listagem de Passeios</h3>
-      <ul className="passeios-list">
-          {passeios.map((passeio, index) => (
-              <li key={index} className="passeios-item">
-                  <h4>{passeio.nomePasseio}</h4>
-                  <p><strong>Local:</strong> {passeio.local}</p>
-                  <p><strong>Descrição:</strong> {passeio.descricao}</p>
-                  <p><strong>Preço:</strong> R$ {passeio.preco}</p>
-                  <p><strong>Data:</strong> {passeio.data}</p>
-                  <button className="btn btn-primary" onClick={() => handleReserva(passeio.nomePasseio)}>Reservar</button>
-              </li>
-          ))}
-      </ul>
-  </div>
+    <h3 className="passeios-title">Listagem de Passeios</h3>
+
+    <div className="passeios-grid">
+        {passeios.map((passeio, index) => (
+            <div key={index} className="passeios-item">
+                <h4>{passeio.nomePasseio}</h4>
+                <p><strong>Local:</strong> {passeio.local}</p>
+                <p><strong>Descrição:</strong> {passeio.descricao}</p>
+                <p><strong>Preço:</strong> R$ {passeio.preco}</p>
+                <p><strong>Data:</strong> {passeio.data}</p>
+                <button className="btn btn-primary" onClick={() => handleReserva(passeio)}>Reservar</button>
+            </div>
+        ))}
+    </div>
+</div>
 );
 };
 
