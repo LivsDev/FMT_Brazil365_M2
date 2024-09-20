@@ -62,10 +62,46 @@ diretamente por esta página.
 ### 8. Avaliações de Passeio (/avaliacoes/:id):
 
 
-### Estrutura do Projeto
+### Estrutura do Projeto - Brazil365
 
-
-
+├── assets/                          # Imagens e arquivos de mídia
+│   ├── fundoidpasseio.jpg            # Exemplo de imagem de fundo
+│   └── outros-arquivos.jpg           # Outros arquivos de imagem
+├── components/                      # Componentes reutilizáveis
+│   ├── Navbar.jsx                    # Componente de navegação
+│   ├── Navbar.css                    # Estilos para o Navbar
+├── contexts/                        # Contextos do projeto (ex: autenticação)
+│   ├── AuthContext.jsx               # Contexto de autenticação
+│   └── useAuth.js                    # Hook de autenticação
+├── pages/                           # Páginas principais do projeto
+│   ├── AvaliacaoPasseio.jsx          # Página de avaliação do passeio
+│   ├── AvaliacaoPasseio.css          # Estilos da página de avaliação
+│   ├── CadastroPasseio.jsx           # Página de cadastro de passeio
+│   ├── CadastroPasseio.css           # Estilos da página de cadastro de passeio
+│   ├── CadastroUsuario.jsx           # Página de cadastro de usuário
+│   ├── CadastroUsuario.css           # Estilos da página de cadastro de usuário
+│   ├── DashboardGuia.jsx             # Dashboard do guia
+│   ├── DashboardGuia.css             # Estilos do dashboard do guia
+│   ├── DetalhePasseio.jsx            # Detalhes de um passeio específico
+│   ├── DetalhePasseio.css            # Estilos da página de detalhes do passeio
+│   ├── ListagemPasseios.jsx          # Página de listagem de passeios
+│   ├── ListagemPasseios.css          # Estilos da página de listagem de passeios
+│   ├── Login.jsx                     # Página de login
+│   ├── Login.css                     # Estilos da página de login
+│   ├── Reservas.jsx                  # Página de reservas do turista
+│   ├── Reservas.css                  # Estilos da página de reservas
+├── routes/                          # Configuração das rotas
+│   ├── AppRoutes.jsx                 # Definição de todas as rotas
+│   ├── PrivateRouteGuia.jsx          # Rotas protegidas para guias
+├── services/                        # Serviços de API ou funções auxiliares
+│   ├── passeioService.js             # Serviços relacionados aos passeios
+│   ├── userService.js                # Serviços relacionados ao usuário
+├── App.jsx                          # Componente principal do projeto
+├── App.css                          # Estilos globais (opcional)
+├── index.css                        # Estilos globais
+├── main.jsx                         # Ponto de entrada do projeto
+├── vite.config.js                   # Configuração do Vite
+└── README.md                        # Documentação do projeto
 
 ### Plano de Projeto
 
