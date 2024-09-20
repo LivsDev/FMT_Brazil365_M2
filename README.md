@@ -6,6 +6,9 @@ Com o objetivo de facilitar a exploração de destinos sob a perspectiva de espe
 
 ![Brazil365](./src/assets/Read.me-Brazil365.png)
 
+## Tecnologias utilizadas
+
+![Brazil365](./src/assets/tecnologiasutilizadas.png)
 
 ## Funcionalidades e telas
 
