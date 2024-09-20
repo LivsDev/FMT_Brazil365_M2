@@ -9,7 +9,7 @@ Com o objetivo de facilitar a exploração de destinos sob a perspectiva de espe
 
 ## Funcionalidades
 
-### 1. Login e Autenticação
+1. Login e Autenticação
 Permite que os usuários façam login com e-mail e senha. 
 
 ### 2. Cadastro Usuários
