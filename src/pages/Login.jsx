@@ -1,17 +1,15 @@
 import { useState, useEffect } from 'react';
 import './Login.css';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../contexts/useAuth'; 
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { login } = useAuth();
 
   // Função para inicializar usuários simulados no localStorage
-    useEffect(() => {
+  useEffect(() => {
     const users = [
       { email: 'admin@example.com', senha: 'Admin1234', tipoUsuario: 'guia', nomeCompleto: 'Admin User' },
       { email: 'livia@example.com', senha: 'Password1', tipoUsuario: 'turista', nomeCompleto: 'User One' },
@@ -20,20 +18,19 @@ const Login = () => {
 
     // Verifica se os usuários já estão no localStorage, senão, os insere
     if (!localStorage.getItem('users')) {
-
-    localStorage.setItem('users', JSON.stringify(users));
-    console.log('Usuários simulados inseridos no localStorage.');
-  } else {
-    // Se os usuários já estão no localStorage, exibe-os no console
-    console.log('Usuários já estão no localStorage.');
-  }
-}, []);
+      localStorage.setItem('users', JSON.stringify(users));
+      console.log('Usuários simulados inseridos no localStorage.');
+    } else {
+      // Se os usuários já estão no localStorage, exibe-os no console
+      console.log('Usuários já estão no localStorage.');
+    }
+  }, []);
 
   // Função para realizar o login
-    const handleLogin = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     setError(null); // Reseta a mensagem de erro
-  
+
     // Verificar se o localStorage contém os usuários
     const storedUsers = localStorage.getItem('users');
     if (!storedUsers) {
@@ -41,15 +38,13 @@ const Login = () => {
       console.log('Erro: Usuários não estão no localStorage');
       return;
     }
-  
+
+    // Verifica se o usuário e senha existem na lista de usuários simulados
     let users = JSON.parse(storedUsers) || [];
     console.log('Tentando login com:', email, senha);
     console.log('Usuários no localStorage:', users);
-  
-    // Verifica se o usuário e senha existem na lista de usuários simulados
-    let user = users.find(
-      (user) => user.email === email && user.senha === senha
-    );
+
+    let user = users.find((user) => user.email === email && user.senha === senha);
 
     if (user) {
       // Adiciona nomeCompleto se não estiver presente
@@ -62,26 +57,20 @@ const Login = () => {
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('currentUser', JSON.stringify(user));
 
-      // Redirecionar de acordo com o tipo de usuário
-      if (user.tipoUsuario === 'guia') {
-        navigate('/dashboard-guia');
-      } else {
-        navigate('/passeios');
-      }
+      // Adiciona um delay para garantir que o localStorage seja atualizado antes do redirecionamento
+      setTimeout(() => {
+        if (user.tipoUsuario === 'guia') {
+          navigate('/dashboard-guia');
+        } else {
+          navigate('/passeios');
+        }
+      }, 500); // Pequeno delay de 500ms
     } else {
-      // Se o usuário não foi encontrado, adicionar novo usuário
-      console.log('Usuário não encontrado. Adicionando novo usuário.');
-      const novoUsuario = { email, senha, tipoUsuario: 'turista', nomeCompleto: 'Novo Usuário' };
-      users.push(novoUsuario);
-      localStorage.setItem('users', JSON.stringify(users));
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('currentUser', JSON.stringify(novoUsuario));
-
-      // Redirecionar o novo usuário turista para a listagem de passeios
-      navigate('/passeios');
+      // Exibir erro se o login falhar
+      setError('Usuário ou senha inválidos.');
     }
   };
-
+  
   return (
     <div id="main-wrapper" className="container">
       <div className="row justify-content-center align-items-center">

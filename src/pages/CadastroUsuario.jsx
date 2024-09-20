@@ -3,8 +3,6 @@ import './CadastroUsuario.css'; // Arquivo CSS personalizado
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { salvarUsuario } from '../services/userService';
-import backgroundImage from '../assets/PaginaCadastro.jpg';
-
 
 const CadastroUsuario = () => {
   const navigate = useNavigate();
@@ -105,7 +103,7 @@ const CadastroUsuario = () => {
   };
 
   return (
-    <div className="cadastro-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
+    <div className="cadastro-background">
       <div className="container-cadastro">
         <h2>Cadastro de Usuário</h2>
         {generalError && <Alert variant="danger">{generalError}</Alert>}
@@ -180,4 +178,3 @@ const CadastroUsuario = () => {
 };
 
 export default CadastroUsuario;
-  

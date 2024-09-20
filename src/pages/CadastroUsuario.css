@@ -1,16 +1,21 @@
-/* src/pages/Cadastro.css */
+/* Remova qualquer aplicação de estilo global no body */
 body {
-  background-image: url('../assets/PaginaCadastro.jpg');
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Novo contêiner para a página de cadastro */
+.cadastro-background {
+  background-image: url('../assets/PaginaCadastro.jpg'); /* Caminho da imagem */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  margin: 0;
-  font-family: 'Arial', sans-serif;
 }
 
 .container-cadastro {
@@ -19,9 +24,10 @@ body {
   border-radius: 10px; /* Bordas arredondadas */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
   max-width: 400px; /* Largura máxima da caixa */
-  margin: 0 auto; /* Centraliza horizontalmente */
   text-align: center; /* Centraliza o texto */
   min-height: 450px; /* Altura mínima */
+  z-index: 1; /* Garante que o conteúdo fique acima da imagem de fundo */
+  position: relative; /* Posiciona a caixa em relação ao contêiner */
 }
 
 input, select, button {
@@ -38,37 +44,6 @@ input:focus, select:focus {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-h1 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-  position: relative;
-}
-
-.form-group input,
-.form-group select {
-  width: 100%;
-  padding: 10px 40px 10px 15px;
-  border: 2px solid #ddd;
-  border-radius: 25px;
-  font-size: 16px;
-  outline: none;
-}
-
-.form-group i {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #007bff;
-}
-
 button {
   background: linear-gradient(90deg, #28a745, #007bff); /* Degradê verde para azul */
   color: white;
@@ -83,5 +58,4 @@ button {
 button:hover {
   background: linear-gradient(90deg, #218838, #0056b3); /* Cores mais escuras ao passar o mouse */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra mais profunda no hover */
-
 }
