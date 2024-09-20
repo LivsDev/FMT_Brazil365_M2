@@ -3,6 +3,8 @@ import './CadastroUsuario.css'; // Arquivo CSS personalizado
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { salvarUsuario } from '../services/userService';
+import backgroundImage from '../assets/PaginaCadastro.jpg';
+
 
 const CadastroUsuario = () => {
   const navigate = useNavigate();
@@ -12,6 +14,7 @@ const CadastroUsuario = () => {
     senha: '',
     tipoUsuario: '',
   });
+
   const [errors, setErrors] = useState({});
   const [generalError, setGeneralError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -79,6 +82,7 @@ const CadastroUsuario = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+
   // Função para lidar com o envio do formulário
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -89,6 +93,7 @@ const CadastroUsuario = () => {
       try {
         salvarUsuario(formValues);
         setSuccessMessage('Usuário cadastrado com sucesso!');
+
         // Redirecionar para a página de login após cadastro bem-sucedido
         setTimeout(() => {
           navigate('/login');
@@ -100,78 +105,79 @@ const CadastroUsuario = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Cadastro de Usuário</h2>
-      {generalError && <Alert variant="danger">{generalError}</Alert>}
-      {successMessage && <Alert variant="success">{successMessage}</Alert>}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="nomeCompleto">
-          <Form.Label>Nome Completo</Form.Label>
-          <Form.Control
-            type="text"
-            name="nomeCompleto"
-            value={formValues.nomeCompleto}
-            onChange={handleChange}
-            isInvalid={!!errors.nomeCompleto}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errors.nomeCompleto}
-          </Form.Control.Feedback>
-        </Form.Group>
+    <div className="cadastro-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <div className="container-cadastro">
+        <h2>Cadastro de Usuário</h2>
+        {generalError && <Alert variant="danger">{generalError}</Alert>}
+        {successMessage && <Alert variant="success">{successMessage}</Alert>}
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="nomeCompleto">
+            <Form.Label>Nome Completo</Form.Label>
+            <Form.Control
+              type="text"
+              name="nomeCompleto"
+              value={formValues.nomeCompleto}
+              onChange={handleChange}
+              isInvalid={!!errors.nomeCompleto}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.nomeCompleto}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-        <Form.Group controlId="email" className="mt-3">
-          <Form.Label>E-mail</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            value={formValues.email}
-            onChange={handleChange}
-            isInvalid={!!errors.email}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errors.email}
-          </Form.Control.Feedback>
-        </Form.Group>
+          <Form.Group controlId="email" className="mt-3">
+            <Form.Label>E-mail</Form.Label>
+            <Form.Control
+              type="email"
+              name="email"
+              value={formValues.email}
+              onChange={handleChange}
+              isInvalid={!!errors.email}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.email}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-        <Form.Group controlId="senha" className="mt-3">
-          <Form.Label>Senha</Form.Label>
-          <Form.Control
-            type="password"
-            name="senha"
-            value={formValues.senha}
-            onChange={handleChange}
-            isInvalid={!!errors.senha}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errors.senha}
-          </Form.Control.Feedback>
-        </Form.Group>
+          <Form.Group controlId="senha" className="mt-3">
+            <Form.Label>Senha</Form.Label>
+            <Form.Control
+              type="password"
+              name="senha"
+              value={formValues.senha}
+              onChange={handleChange}
+              isInvalid={!!errors.senha}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.senha}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-        <Form.Group controlId="tipoUsuario" className="mt-3">
-          <Form.Label>Tipo de Usuário</Form.Label>
-          <Form.Select
-            name="tipoUsuario"
-            value={formValues.tipoUsuario}
-            onChange={handleChange}
-            isInvalid={!!errors.tipoUsuario}
-          >
-            <option value="">Selecione</option>
-            <option value="guia">Guia Turístico</option>
-            <option value="turista">Turista</option>
-          </Form.Select>
-          <Form.Control.Feedback type="invalid">
-            {errors.tipoUsuario}
-          </Form.Control.Feedback>
-        </Form.Group>
+          <Form.Group controlId="tipoUsuario" className="mt-3">
+            <Form.Label>Tipo de Usuário</Form.Label>
+            <Form.Select
+              name="tipoUsuario"
+              value={formValues.tipoUsuario}
+              onChange={handleChange}
+              isInvalid={!!errors.tipoUsuario}
+            >
+              <option value="">Selecione</option>
+              <option value="guia">Guia Turístico</option>
+              <option value="turista">Turista</option>
+            </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              {errors.tipoUsuario}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-        <Button variant="primary" type="submit" className="mt-4">
-          Cadastrar
-        </Button>
-      </Form>
+          <Button variant="primary" type="submit" className="mt-4">
+            Cadastrar
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 };
 
 export default CadastroUsuario;
- 
   

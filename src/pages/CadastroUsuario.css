@@ -1,6 +1,6 @@
 /* src/pages/Cadastro.css */
 body {
-  
+  background-image: url('../assets/PaginaCadastro.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
