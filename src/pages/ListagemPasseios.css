@@ -1,6 +1,6 @@
 /* Container principal */
 .listagem-passeios-container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -14,15 +14,22 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    background-color: #6fdcf7; /* Cor azul claro */
+    padding: 15px;
+    border-radius: 5px;
 }
 
 .dashboard-header h2 {
     font-size: 1.8rem;
-    color: #333;
+    color: white;
 }
 
 .dashboard-actions button {
     margin-left: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 /* Título */
@@ -30,38 +37,16 @@
     font-size: 1.6rem;
     color: #333;
     margin-bottom: 20px;
+    text-align: center;
 }
 
-/* Lista de passeios */
-.passeios-list {
-    list-style: none;
-    padding: 0;
-}
-
-.passeios-item {
-    padding: 15px;
-    margin-bottom: 15px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.passeios-item h4 {
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-.passeios-item p {
-    margin: 5px 0;
-    color: #555;
-}
-
-/* Botões */
+/* Estilo dos botões */
 .btn {
     padding: 10px;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    font-size: 14px;
 }
 
 .btn-primary {
@@ -94,8 +79,58 @@
     background-color: #c82333;
 }
 
+/* Grid de passeios */
+.passeios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Itens de passeio */
+.passeios-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.passeios-item:hover {
+    transform: scale(1.05);
+}
+
+.passeios-item h4 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+}
+
+.passeios-item p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Exibir mensagem */
 .text-message {
-    color: green; /* Escolha a cor que preferir */
+    color: green;
     font-weight: bold;
     margin: 10px 0;
+    text-align: center;
 }
+
+
+/* Lista de passeios em grid */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo */
+    gap: 15px; /* Espaço entre os itens */
+    margin-top: 15px;
+  }
+  
+  /* Cada item de passeio na grid */
+  .grid-item {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }

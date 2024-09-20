@@ -38,6 +38,9 @@ O usuários poderão de cadastrar como turista ou como guia.
 ![Brazil365](./src/assets/TelaCadastroPasseio.png)
 
 
+### 5 . Listagem de Passeios: (/passeios)
+
+
 
 
 

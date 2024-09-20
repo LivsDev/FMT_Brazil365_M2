@@ -22,6 +22,11 @@ const ListagemPasseios = () => {
       navigate('/login'); // Redireciona para a página de login
   };
 
+  // Função para redirecionar para o dashboard
+  const handleDashboard = () => {
+    navigate('/dashboard-guia'); // Redireciona para a página do dashboard
+};
+
       // Função para reservar um passeio
     const handleReserva = (passeio) => {
     if (usuarioLogado.tipoUsuario !== 'turista') {
@@ -66,6 +71,7 @@ const ListagemPasseios = () => {
           <h2>Bem-vindo, {usuarioLogado.nomeCompleto}</h2>
           <div className="dashboard-actions">
               <button className="btn btn-info" onClick={handleMinhasReservas}>Minhas Reservas</button>
+              <button className="btn btn-primary" onClick={handleDashboard}>Dashboard</button>
               <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
           </div>
       </header>
