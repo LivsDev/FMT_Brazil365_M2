@@ -3,21 +3,25 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  max-width: 1200px; /* Limite máximo de largura */
-  margin: 0 auto;
-  padding: 20px;
-  background-image: url('/src/assets/dashboardguia.jpg'); 
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  max-width: 1500px; /* Limite máximo de largura */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  padding: 70px;
+  background-image: url('/src/assets/dashboardguia.jpg'); /* Caminho da imagem de fundo */
+  background-size: cover; /* Garante que a imagem cubra todo o fundo */
+  background-position: center center; /* Centraliza a imagem de fundo */
   background-repeat: no-repeat;
+  background-attachment:local; /* Mantém a imagem fixa no fundo */
 }
 
 /* Conteúdo principal do dashboard */
 .dashboard-main {
-  flex: 1;
-  padding: 10px;
-  background-color: #f5f5f5;
+  background-color: rgba(255, 255, 255, 0.9); /* Leve transparência no fundo da div */
+  border-radius: 10px; /* Bordas arredondadas */
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  margin: 0 auto; /* Centraliza o conteúdo */
+  width: 100%; /* Ocupa toda a largura disponível */
+  max-width: 1200px; /* Limite máximo para não ficar muito largo */
 }
 
 /* Cabeçalho do dashboard */
@@ -56,7 +60,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
   text-align: center;
-  font-size: 14px; /* Reduzi o tamanho da fonte */
+  font-size: 12px; /* Reduzi o tamanho da fonte */
   color: #333;
 }
 
