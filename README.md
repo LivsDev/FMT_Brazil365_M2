@@ -59,8 +59,6 @@ O usuários poderão de cadastrar como turista ou como guia.
 diretamente por esta página.
 
 
-
-
 ### 8. Avaliações de Passeio (/avaliacoes/:id):
 
 
