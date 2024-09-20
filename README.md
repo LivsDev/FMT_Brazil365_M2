@@ -44,8 +44,7 @@ O usuários poderão de cadastrar como turista ou como guia.
 
 
 
-### PLANO DE PROJETO
-
+### Plano de Projeto
 
 Ao construir a aplicação coloquei em prática os aprendizados em:
 
