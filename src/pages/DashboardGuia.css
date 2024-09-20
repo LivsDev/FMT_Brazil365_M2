@@ -4,25 +4,29 @@
   flex-direction: column;
   min-height: 100vh;
   max-width: 1200px; /* Limite máximo de largura */
-  margin: 0 auto; /* Centraliza horizontalmente */
-  padding: 20px; /* Ajusta o padding */
-  background-color: #f6f9fc; /* Cor de fundo clara */
+  margin: 0 auto;
+  padding: 20px;
+  background-image: url('/src/assets/dashboardguia.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 /* Conteúdo principal do dashboard */
 .dashboard-main {
   flex: 1;
-  padding: 15px;
+  padding: 10px;
   background-color: #f5f5f5;
 }
 
 /* Cabeçalho do dashboard */
 .dashboard-header {
-  background-color: #6fdcf7; /* Amarelo suave */
+  background-color: #6fdcf7; 
   color: white;
-  padding: 15px; /* Ajustei o padding */
+  padding: 10px; 
   border-radius: 5px;
-  font-size: 10px; /* Reduzi o tamanho da fonte */
+  font-size: 6px; 
   font-weight: bold;
   text-align: center;
   display: flex;
@@ -38,8 +42,8 @@
 
 /* Texto de boas-vindas */
 .dashboard-welcome {
-  color: white; /* Texto branco */
-  font-size: 14px; /* Diminui o tamanho da fonte */
+  color: white;
+  font-size: 12px; /* Diminui o tamanho da fonte */
   font-weight: bold;
   text-align: center;
 }
@@ -47,49 +51,49 @@
 /* Card que exibe a quantidade de passeios */
 .dashboard-card {
   background-color: white;
-  padding: 15px; /* Reduzi o padding */
-  margin-top: 15px; /* Ajustei a margem superior */
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  padding: 10px;
+  margin-top: 10px; /* Ajustei a margem superior */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
   text-align: center;
-  font-size: 16px; /* Reduzi o tamanho da fonte */
+  font-size: 14px; /* Reduzi o tamanho da fonte */
   color: #333;
 }
 
 /* Seção de botões de ação */
 .dashboard-actions {
-  margin-top: 30px;
+  margin-top: 20px;
   display: flex;
-  gap: 20px;
+  gap: 10px;
 }
 
 /* Estilo dos botões de ação com degradê */
 .dashboard-button {
   background: linear-gradient(90deg, #28a745, #007bff); /* Degradê verde para azul */
   color: white;
-  padding: 15px 25px;
+  padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
   text-align: center;
   flex: 1;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   transition: background 0.3s;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
 }
 
 /* Lista de passeios em grid */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo */
-  gap: 20px; /* Espaço entre os itens */
-  margin-top: 20px;
+  gap: 15px; /* Espaço entre os itens */
+  margin-top: 15px;
 }
 
 /* Cada item de passeio na grid */
 .grid-item {
   background-color: white;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
@@ -105,9 +109,9 @@
   background-color: #007bff;
   color: white;
   text-align: center;
-  padding: 10px;
+  padding: 8px;
   display: block;
-  margin-top: 10px;
+  margin-top: 8px;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s;
@@ -131,6 +135,6 @@
 
 /* Navbar logo */
 .navbar-logo {
-  height: 40px;
+  height: 35px;
   width: auto;
 }
