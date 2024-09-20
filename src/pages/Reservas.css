@@ -1,6 +1,5 @@
-/* Container principal */
 .reservas-container {
-    max-width: 1200px;
+    max-width: 1200px; /* Aumentei o tamanho máximo */
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -8,63 +7,43 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Título */
-.reservas-container h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Grid de reservas */
-.reservas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo e lado a lado */
-    gap: 20px; /* Espaçamento entre as reservas */
+.reservas-list {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens se ajustem na linha */
+    gap: 20px; /* Espaço entre os itens */
     list-style: none;
     padding: 0;
+    justify-content: center; /* Centraliza os itens na página */
 }
 
-/* Cada item de reserva */
 .reservas-item {
+    flex: 1 1 calc(33.333% - 20px); /* Tamanho dos itens (33% de largura) */
     padding: 15px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    box-sizing: border-box;
+    min-width: 280px; /* Define um tamanho mínimo para os itens */
+    max-width: 400px; /* Define um tamanho máximo para os itens */
 }
 
-.reservas-item:hover {
-    transform: scale(1.05);
-}
-
-/* Título da reserva */
 .reservas-item h4 {
     margin: 0;
     font-size: 1.5rem;
 }
 
-/* Descrição da reserva */
 .reservas-item p {
     margin: 5px 0;
     color: #555;
-}
-
-/* Botões de ação */
-.btn {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
 }
 
 .btn-danger {
     background-color: #dc3545;
     color: #fff;
     border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .btn-danger:hover {
@@ -75,30 +54,12 @@
     background-color: #007bff;
     color: #fff;
     border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
 .btn-primary:hover {
     background-color: #0056b3;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 15px;
-    width: 100%;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-}
-
-/* Mensagem de sucesso */
-.text-success {
-    color: #28a745;
-    font-weight: bold;
-    margin: 15px 0;
 }
