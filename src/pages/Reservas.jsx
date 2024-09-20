@@ -54,47 +54,44 @@ const Reservas = () => {
 
     return (
         <div className="reservas-container">
-            <h2>Minhas Reservas</h2>
-
-            {/* Exibe a mensagem, se houver */}
-            {mensagem && <p className="text-success">{mensagem}</p>}
-            
-            {reservas.length > 0 ? (
-                <ul className="reservas-list">
-                    {reservas.map((reserva, index) => (
-                        <li key={index} className="reservas-item">
-                            <h4>{reserva.passeioId}</h4>
-                            <p><strong>Local:</strong> {reserva.local}</p>
-                            <p><strong>Data:</strong> {reserva.data}</p>
-                            <p><strong>Status:</strong> {reserva.status || 'ativa'}</p>
-
-                            
-                            
-                            {reserva.status !== 'cancelada' && (
-                                <button className="btn btn-danger" onClick={() => handleCancelReserva(reserva.passeioId)}>
-                                    Cancelar Reserva
-                                </button>
- )}
-
- {/* Botão para adicionar avaliação */}
- {reserva.status !== 'cancelada' && (
-     <button className="btn btn-primary" onClick={() => handleAddAvaliacao(reserva.passeioId)}>
-         Adicionar Avaliação
-     </button>
+          <h2>Minhas Reservas</h2>
+      
+          {/* Exibe a mensagem, se houver */}
+          {mensagem && <p className="text-success">{mensagem}</p>}
+          
+          {reservas.length > 0 ? (
+            <div className="reservas-grid">
+              {reservas.map((reserva, index) => (
+                <div key={index} className="reservas-item">
+                  <h4>{reserva.passeioId}</h4>
+                  <p><strong>Local:</strong> {reserva.local}</p>
+                  <p><strong>Data:</strong> {reserva.data}</p>
+                  <p><strong>Status:</strong> {reserva.status || 'ativa'}</p>
+      
+                  {reserva.status !== 'cancelada' && (
+                    <>
+                      <button className="btn btn-danger" onClick={() => handleCancelReserva(reserva.passeioId)}>
+                        Cancelar Reserva
+                      </button>
+                      <button className="btn btn-primary" onClick={() => handleAddAvaliacao(reserva.passeioId)}>
+                        Adicionar Avaliação
+                      </button>
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>Você não possui reservas.</p>
           )}
-         </li>
-           ))}
-         </ul>
-        ) : (
-         <p>Você não possui reservas.</p>
-        )}
+      
+          {/* Botão Voltar */}
+          <button className="btn btn-secondary" onClick={handleBackToPasseios}>
+            Voltar para a Listagem de Passeios
+          </button>
+        </div>
+      );
 
-{/* Botão Voltar */}
-<button className="btn btn-secondary" onClick={handleBackToPasseios}>
-Voltar para a Listagem de Passeios
-</button>
-</div>
-);
-};
+    };   
 
 export default Reservas;
