@@ -10,7 +10,7 @@ Com o objetivo de facilitar a exploração de destinos sob a perspectiva de espe
 
 ![Brazil365](./src/assets/tecnologiasutilizadas.png)
 
-## Funcionalidades e telas
+## Funcionalidades e Telas 
 
 ## 1. Login e Autenticação: (/login)
 Permite que os usuários façam login com e-mail e senha. 
@@ -30,9 +30,12 @@ O usuários poderão de cadastrar como turista ou como guia.
 
 ### 4. Cadastro de Novo Passeio: (/passeio/novo)
 
-Cadastro de novos passeios feitos pelos guias.
+* Cadastro de novos passeios feitos pelos guias.
+* Cada passeio deve ter um nome único para o guia que o cadastrou.
+* O guia deve preencher todos os campos obrigatórios para cadastrar um passeio.
+* O número de passeios cadastrados pelo guia será controlado localmente, sem limite pré-definido.
 
-
+![Brazil365](./src/assets/TelaCadastroPasseio.png)
 
 
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './CadastroUsuario.css'; // Arquivo CSS personalizado
+import './CadastroPasseio'; // Arquivo CSS personalizado
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { salvarUsuario } from '../services/userService';
