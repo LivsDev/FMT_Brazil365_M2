@@ -44,4 +44,14 @@ O usuários poderão de cadastrar como turista ou como guia.
 
 
 
+### PLANO DE PROJETO
 
+
+Ao construir a aplicação coloquei em prática os aprendizados em:
+
+* Versionamento: Uso do GitHub para versionamento de código.
+* HTML: Tags e Elementos semânticos
+* CSS: Seletores, Principais estilos, Layouts e Flexbox
+* JavaScript: Variáveis, Tipos de dados, Operadores, Manipulação do DOM, Estrutura de Controle de Fluxo, Funções, Eventos, JSON, LocalStorage, Interval, Timeout, Operadores Rest e Spread, Módulos, Arrow Functions, Funções de Arrays, Funções Assíncronas e Fetch.
+* React: Renderização de componentes, Props, Proptypes, Hooks, Eventos, Renderização de listas, React Router, Formulários, Prop Drilling, Composition, Estilos Bootstrap, Developer Tools e Deploy.
+* Skills: Organização, criação de documentação e apresentação de solução.
