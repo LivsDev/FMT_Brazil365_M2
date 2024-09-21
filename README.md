@@ -81,8 +81,8 @@ Ao construir a aplicação coloquei em prática os aprendizados em:
 * **React:** Renderização de componentes, Props, Proptypes, Hooks, Eventos, Renderização de listas, React Router, Formulários, Prop Drilling, Composition, Estilos Bootstrap, Developer Tools e Deploy.
 * **Skills:** Organização, criação de documentação e apresentação de solução.
 
-## Futura Dev
+## Futura Dev - Livia Serencovich
 
-Turma Trip - 2024 Floripa Mais tec
+Aluna Turma Trip - 2024 Floripa Mais tec
 
-⌨️ com 💜 por Livia Serencovich Carvalho
+⌨️ com 💜 por Livia 
