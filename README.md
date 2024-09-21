@@ -82,6 +82,16 @@ Ao construir a aplicação coloquei em prática os aprendizados em:
 * **React:** Renderização de componentes, Props, Proptypes, Hooks, Eventos, Renderização de listas, React Router, Formulários, Prop Drilling, Composition, Estilos Bootstrap, Developer Tools e Deploy.
 * **Skills:** Organização, criação de documentação e apresentação de solução.
 
+## Melhorias Futuras
+
+* Integração com banco de dados.
+* Inclusão de imagens dos passeios pelos guias
+* Inclusão de fotos pelos turistas
+* Formas de pagamento
+* Chat para usuários ativos
+* Implementar autenticação robusta com JWT
+* 
+
 ## Futura Dev - Livia Serencovich
 
 Aluna Turma Trip - 2024 Floripa Mais tec
