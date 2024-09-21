@@ -60,6 +60,8 @@ diretamente por esta página.
 
 ![Brazil365](./src/assets/reservaspagina.png)
 
+
+
 ### 8. Avaliações de Passeio (/avaliacoes/:id):
 
 * Apenas turistas que participaram do passeio podem avaliá-lo.
