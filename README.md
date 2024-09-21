@@ -61,6 +61,10 @@ diretamente por esta página.
 
 ### 8. Avaliações de Passeio (/avaliacoes/:id):
 
+* Apenas turistas que participaram do passeio podem avaliá-lo.
+* A nota e o comentário serão exibidos para outros usuários que visualizaram o passeio.
+
+![Brazil365](./src/assets/paginavaliacao.png)
 
 ### Estrutura do Projeto - Brazil365
 
