@@ -58,6 +58,7 @@ O usuários poderão de cadastrar como turista ou como guia.
 * Apenas turistas autenticados possuem acesso as suas reservas,e podem cancelar
 diretamente por esta página.
 
+![Brazil365](./src/assets/reservaspagina.png)
 
 ### 8. Avaliações de Passeio (/avaliacoes/:id):
 
